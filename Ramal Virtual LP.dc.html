@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; font-family: Manrope, Helvetica, Arial, sans-serif; background: #ffffff; color: #0F1B2D; -webkit-font-smoothing: antialiased; }
+  a { color: #1857D6; text-decoration: none; }
+  a:hover { color: #0A2A5E; }
+  :focus-visible { outline: 3px solid #1EA0E8; outline-offset: 2px; }
+  input, select, textarea, button { font-family: inherit; }
+  html { scroll-behavior: smooth; }
+</style>
+</helmet>
+
+<header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid #E7EBF2;">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; gap: 28px;">
+    <a href="#top" style="display: flex; align-items: center; flex: 0 0 auto;"><img src="uploads/Logo RV Azul - Copia (1).jpg.jpeg" alt="Ramal Virtual Telecom" style="height: 44px; width: auto; display: block;"></a>
+    <nav style="display: flex; gap: 26px; margin-left: auto; align-items: center;">
+      <a href="#solucao" style="font-size: 14px; font-weight: 600; color: #3D4C63;" style-hover="color: #1857D6;">Soluções</a>
+      <a href="#beneficios" style="font-size: 14px; font-weight: 600; color: #3D4C63;" style-hover="color: #1857D6;">Benefícios</a>
+      <a href="#planos" style="font-size: 14px; font-weight: 600; color: #3D4C63;" style-hover="color: #1857D6;">Planos</a>
+      <a href="#como-funciona" style="font-size: 14px; font-weight: 600; color: #3D4C63;" style-hover="color: #1857D6;">Como funciona</a>
+      <a href="#faq" style="font-size: 14px; font-weight: 600; color: #3D4C63;" style-hover="color: #1857D6;">FAQ</a>
+    </nav>
+    <a href="#contato" style="flex: 0 0 auto; border: 1.5px solid #1857D6; color: #1857D6; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 11px 20px; border-radius: 8px;" style-hover="background: #1857D6; color: #ffffff;">Falar com especialista</a>
+    <a href="https://wa.me/551130900900" target="_blank" rel="noopener" aria-label="Falar no WhatsApp: (11) 3090-0900" style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; background: #25D366; border-radius: 50%; box-shadow: 0 0 0 1px rgba(37,211,102,0.4), 0 0 18px 2px rgba(37,211,102,0.65), 0 0 34px 6px rgba(37,211,102,0.35);" style-hover="box-shadow: 0 0 0 1px rgba(37,211,102,0.55), 0 0 22px 4px rgba(37,211,102,0.85), 0 0 44px 10px rgba(37,211,102,0.5);">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3C4.3 14.8 3.9 13.4 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.6-.7-2.7-1.6-3.5-3.1-.1-.2 0-.4.1-.5.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.2 1 2.4 1.1 2.6.1.2 1.9 3 4.7 4.1 2.7 1.1 2.7.7 3.2.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.2z"></path></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top" style="display: block;">
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 40px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center;">
+    <div>
+      <p style="margin: 0 0 18px; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #1EA0E8;">Telefonia em nuvem para empresas</p>
+      <h1 style="margin: 0; font-size: 54px; line-height: 1.06; font-weight: 800; letter-spacing: -0.02em; text-wrap: balance;">{{ heroPre }}<span style="color: #1857D6;">{{ heroHighlight }}</span>{{ heroPost }}<br><span style="color: #1857D6;">{{ heroLine2 }}</span></h1>
+      <p style="margin: 24px 0 0; font-size: 19px; line-height: 1.6; color: #5A6A80; max-width: 30em; text-wrap: pretty;">Tenha uma telefonia empresarial mais flexível, conectada e pronta para acompanhar o crescimento do seu negócio.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px;">
+        <a href="#planos" style="background: #1857D6; color: #ffffff; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 16px 30px; border-radius: 9px; box-shadow: 0 10px 24px -12px rgba(24,87,214,0.7);" style-hover="background: #0A2A5E; color: #ffffff;">Conhecer os planos</a>
+        <a href="#contato" style="border: 1.5px solid #C9D6EC; color: #0A2A5E; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; padding: 16px 30px; border-radius: 9px;" style-hover="border-color: #1857D6; color: #1857D6;">Falar com especialista</a>
+      </div>
+      <p style="margin: 20px 0 0; font-size: 13px; color: #7A889C; font-weight: 500;">Sem fidelidade • Contratação rápida • Cancelamento fácil</p>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 40px; padding-top: 28px; border-top: 1px solid #E7EBF2;">
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12.5px; line-height: 1.4; color: #5A6A80; font-weight: 600;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"></path></svg>
+          <span>Mais de 10 anos<br>de mercado</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12.5px; line-height: 1.4; color: #5A6A80; font-weight: 600;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3v-7a9 9 0 0 1 18 0v7h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path><path d="M21 19v1a4 4 0 0 1-4 4h-5"></path></svg>
+          <span>Atendimento<br>especializado</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12.5px; line-height: 1.4; color: #5A6A80; font-weight: 600;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+          <span>Tecnologia<br>100% em nuvem</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px; font-size: 12.5px; line-height: 1.4; color: #5A6A80; font-weight: 600;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.29 1.51 4.04 3 5.5l4.5 4.5"></path><path d="m17.5 14.5-4 4-1.5-1.5"></path></svg>
+          <span>Suporte<br>humanizado</span>
+        </div>
+      </div>
+    </div>
+    <div style="position: relative;">
+      <div style="position: absolute; inset: -8% -6% 8% 10%; background: radial-gradient(circle at 65% 35%, rgba(30,160,232,0.16), rgba(255,255,255,0) 68%); border-radius: 50%;"></div>
+      <div style="position: relative; aspect-ratio: 4 / 3.4; display: flex; align-items: center; justify-content: center;">
+        <img src="uploads/homem mexendo no notebook e mulher no celular.png" alt="Homem no notebook e mulher ao telefone, atendendo clientes" style="width: 100%; height: 100%; object-fit: contain;">
+      </div>
+      <div style="position: absolute; top: 10%; left: -6%; background: #0A2A5E; color: #ffffff; border-radius: 12px; padding: 13px 16px; box-shadow: 0 18px 40px -18px rgba(10,42,94,0.6); display: flex; align-items: center; gap: 12px; min-width: 216px;">
+        <div style="width: 34px; height: 34px; border-radius: 50%; background: #1EA0E8; flex: 0 0 auto; display: flex; align-items: center; justify-content: center;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3 1.2.4 2.5.6 3.8.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.6.6 3.8.1.4 0 .8-.3 1.1l-2.3 2.2z"></path></svg>
+        </div>
+        <div style="display: grid; gap: 3px;">
+          <span style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #8FB6E8; font-weight: 700;">Ligação em andamento</span>
+          <span style="font-size: 13px; font-weight: 700;">Comercial · 00:32</span>
+        </div>
+      </div>
+      <div style="position: absolute; bottom: 6%; right: -5%; background: #ffffff; border: 1px solid #E7EBF2; border-radius: 12px; padding: 14px 16px; box-shadow: 0 18px 40px -20px rgba(15,27,45,0.35); min-width: 210px; display: grid; gap: 10px;">
+        <span style="font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #7A889C; font-weight: 800;">Ramais conectados</span>
+        <div style="display: flex; align-items: center; gap: 9px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22B07D;"></span><span style="font-size: 13px; font-weight: 600; color: #0F1B2D;">Recepção</span><span style="font-size: 12px; color: #7A889C; margin-left: auto;">Online</span></div>
+        <div style="display: flex; align-items: center; gap: 9px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #1EA0E8;"></span><span style="font-size: 13px; font-weight: 600; color: #0F1B2D;">Comercial 1</span><span style="font-size: 12px; color: #7A889C; margin-left: auto;">Em chamada</span></div>
+        <div style="display: flex; align-items: center; gap: 9px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #22B07D;"></span><span style="font-size: 13px; font-weight: 600; color: #0F1B2D;">Financeiro</span><span style="font-size: 12px; color: #7A889C; margin-left: auto;">Online</span></div>
+        <div style="display: flex; align-items: center; gap: 9px;"><span style="width: 8px; height: 8px; border-radius: 50%; background: #C6CFDD;"></span><span style="font-size: 13px; font-weight: 600; color: #8794A8;">Diretoria</span><span style="font-size: 12px; color: #A6B1C2; margin-left: auto;">Offline</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 1200px; margin: 0 auto; padding: 12px 24px 0;">
+    <div style="background: #1857D6; border-radius: 14px; padding: 22px 12px; display: grid; grid-template-columns: repeat(5, minmax(0,1fr));">
+      <div style="padding: 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; font-size: 14px; font-weight: 700; line-height: 1.35;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+        Telefonia em nuvem
+      </div>
+      <div style="padding: 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; font-size: 14px; font-weight: 700; line-height: 1.35; border-left: 1px solid rgba(255,255,255,0.28);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><polyline points="5 9 2 12 5 15"></polyline><polyline points="9 5 12 2 15 5"></polyline><polyline points="15 19 12 22 9 19"></polyline><polyline points="19 9 22 12 19 15"></polyline><line x1="2" y1="12" x2="22" y2="12"></line><line x1="12" y1="2" x2="12" y2="22"></line></svg>
+        Flexível e escalável
+      </div>
+      <div style="padding: 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; font-size: 14px; font-weight: 700; line-height: 1.35; border-left: 1px solid rgba(255,255,255,0.28);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M5 13a10 10 0 0 1 14 0"></path><path d="M8.5 16.5a5 5 0 0 1 7 0"></path><path d="M2 8.82a15 15 0 0 1 20 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+        Sem estrutura física
+      </div>
+      <div style="padding: 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; font-size: 14px; font-weight: 700; line-height: 1.35; border-left: 1px solid rgba(255,255,255,0.28);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="m18 3-4 4h6l-4 4"></path><path d="m6.3 20.3a2.4 2.4 0 0 0 3.4 0L12 18l-6-6-2.3 2.3a2.4 2.4 0 0 0 0 3.4Z"></path><path d="m2 22 3-3"></path><path d="M7.5 13.5 10 11"></path><path d="M10.5 16.5 13 14"></path></svg>
+        Integração com sistemas
+      </div>
+      <div style="padding: 0 20px; display: flex; align-items: center; justify-content: center; gap: 10px; color: #ffffff; font-size: 14px; font-weight: 700; line-height: 1.35; border-left: 1px solid rgba(255,255,255,0.28);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>
+        Segurança e estabilidade
+      </div>
+    </div>
+  </section>
+
+  <section id="problema" style="max-width: 1200px; margin: 0 auto; padding: 84px 24px 0;">
+    <p style="margin: 0 0 14px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #1EA0E8;">O problema</p>
+    <h2 style="margin: 0 auto; max-width: 18em; text-align: center; font-size: 38px; line-height: 1.15; font-weight: 800; letter-spacing: -0.015em;">Sua empresa ainda enfrenta esses desafios?</h2>
+    <p style="margin: 18px auto 0; max-width: 46em; text-align: center; font-size: 17px; line-height: 1.6; color: #5A6A80; text-wrap: pretty;">Manter uma central telefônica física custa caro e trava seu crescimento. Cada ramal novo é uma dor de cabeça, cada equipamento é um risco de pane.</p>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 18px; margin-top: 44px;">
+      <div style="border: 1px solid #E7EBF2; border-radius: 14px; padding: 26px 20px; background: #ffffff;" style-hover="border-color: #1857D6; box-shadow: 0 16px 34px -22px rgba(24,87,214,0.5);">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF3FD; margin-bottom: 18px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+        <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3;">Estrutura física complexa</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5A6A80;">Equipamentos e manutenção complicados de instalar e de manter.</p>
+      </div>
+      <div style="border: 1px solid #E7EBF2; border-radius: 14px; padding: 26px 20px; background: #ffffff;" style-hover="border-color: #1857D6; box-shadow: 0 16px 34px -22px rgba(24,87,214,0.5);">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF3FD; margin-bottom: 18px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.5c2.5-2.5 5-5.5 5-8.5a5 5 0 0 0-9.5-2.2"></path><path d="M6 9a5 5 0 0 0 5.5 7"></path><line x1="2" y1="2" x2="22" y2="22"></line></svg></div>
+        <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3;">Pouca mobilidade</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5A6A80;">Sua equipe fica presa ao escritório só para atender uma ligação.</p>
+      </div>
+      <div style="border: 1px solid #E7EBF2; border-radius: 14px; padding: 26px 20px; background: #ffffff;" style-hover="border-color: #1857D6; box-shadow: 0 16px 34px -22px rgba(24,87,214,0.5);">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF3FD; margin-bottom: 18px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M14.8 9a2.5 2.5 0 0 0-2.3-1.5H11a2 2 0 0 0 0 4h2a2 2 0 0 1 0 4h-1.7a2.5 2.5 0 0 1-2.3-1.5"></path><line x1="12" y1="6" x2="12" y2="7.5"></line><line x1="12" y1="16.5" x2="12" y2="18"></line></svg></div>
+        <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3;">Custo alto para expandir</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5A6A80;">Cada ramal novo exige intervenção técnica e investimento.</p>
+      </div>
+      <div style="border: 1px solid #E7EBF2; border-radius: 14px; padding: 26px 20px; background: #ffffff;" style-hover="border-color: #1857D6; box-shadow: 0 16px 34px -22px rgba(24,87,214,0.5);">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF3FD; margin-bottom: 18px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.439 7.85c-.049.322.059.648.289.878l1.568 1.568c.47.47.706 1.087.706 1.704s-.235 1.233-.706 1.704l-1.611 1.611a.98.98 0 0 1-.837.276c-.47-.07-.802-.48-.968-.925a2.501 2.501 0 1 0-3.214 3.214c.446.166.855.497.925.968a.979.979 0 0 1-.276.837l-1.61 1.61a2.404 2.404 0 0 1-1.705.707c-.617 0-1.234-.236-1.704-.706l-1.568-1.568a1.026 1.026 0 0 0-.877-.29c-.493.074-.84.504-1.02.968a2.5 2.5 0 1 1-3.237-3.237c.464-.18.894-.527.967-1.02a1.026 1.026 0 0 0-.289-.877l-1.568-1.568A2.404 2.404 0 0 1 1.998 12c0-.617.236-1.234.706-1.704L4.315 8.685a.98.98 0 0 1 .837-.276c.47.07.803.481.968.926a2.5 2.5 0 1 0 3.214-3.214c-.446-.165-.856-.497-.925-.968a.979.979 0 0 1 .276-.837l1.61-1.61a2.404 2.404 0 0 1 1.704-.706c.617 0 1.234.236 1.704.706l1.568 1.568c.23.23.556.338.877.29.493-.074.84-.504 1.02-.968a2.5 2.5 0 1 1 3.237 3.237c-.464.181-.894.527-.968 1.02Z"></path></svg></div>
+        <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3;">Falta de integração</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5A6A80;">Sua telefonia precisa conversar melhor com os sistemas que já usa.</p>
+      </div>
+      <div style="border: 1px solid #E7EBF2; border-radius: 14px; padding: 26px 20px; background: #ffffff;" style-hover="border-color: #1857D6; box-shadow: 0 16px 34px -22px rgba(24,87,214,0.5);">
+        <div style="width: 40px; height: 40px; border-radius: 10px; background: #EEF3FD; margin-bottom: 18px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg></div>
+        <h3 style="margin: 0 0 10px; font-size: 16px; font-weight: 800; line-height: 1.3;">Manutenção demorada</h3>
+        <p style="margin: 0; font-size: 14px; line-height: 1.55; color: #5A6A80;">Quando algo trava, o reparo depende de visita presencial.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="solucao" style="margin-top: 84px; background: #1857D6; padding: 78px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 0.85fr 1.3fr; gap: 56px; align-items: start;">
+      <div>
+        <p style="margin: 0 0 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #A8C8F5;">A solução</p>
+        <h2 style="margin: 0; font-size: 38px; line-height: 1.12; font-weight: 800; letter-spacing: -0.015em; color: #ffffff;">Uma telefonia que acompanha sua empresa.</h2>
+        <p style="margin: 22px 0 0; font-size: 16.5px; line-height: 1.65; color: #DCE8FB; text-wrap: pretty;">O Ramal Virtual substitui a central física por uma central 100% em nuvem. Seus ramais ficam disponíveis em qualquer dispositivo com internet — computador, smartphone ou telefone IP — com a mesma qualidade de uma central tradicional, sem a estrutura física.</p>
+        <a href="#contato" style="display: inline-block; margin-top: 30px; background: #ffffff; color: #1857D6; font-size: 13.5px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 15px 26px; border-radius: 9px;" style-hover="background: #0A2A5E; color: #ffffff;">Quero conhecer a solução</a>
+      </div>
+      <div id="beneficios" style="display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px;">
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"></path><path d="M15 7h2a5 5 0 1 1 0 10h-2"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Integração</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Possibilidade de integração com sistemas administrativos.</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="14" height="10" rx="1"></rect><path d="M2 18h16"></path><path d="m20 6-2 2 2 2"></path><path d="M22 8h-4"></path></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Flexibilidade</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Use computador, smartphone, telefone convencional ou IP.</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Mobilidade</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Seu ramal acompanha sua equipe.</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Cloud</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Serviço hospedado em ambiente seguro.</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Manutenção</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Atualizações e suporte simplificados.</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 24px 20px;">
+          <div style="width: 40px; height: 40px; border-radius: 10px; background: #EAF1FD; margin-bottom: 16px; display: flex; align-items: center; justify-content: center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg></div>
+          <h3 style="margin: 0 0 8px; font-size: 15.5px; font-weight: 800;">Escalabilidade</h3>
+          <p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #5A6A80;">Estrutura preparada para crescer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="planos" style="max-width: 1200px; margin: 0 auto; padding: 84px 24px 0;">
+    <p style="margin: 0 0 14px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #1EA0E8;">Planos</p>
+    <h2 style="margin: 0 auto; max-width: 20em; text-align: center; font-size: 38px; line-height: 1.15; font-weight: 800; letter-spacing: -0.015em;">Escolha o plano ideal para sua empresa</h2>
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 18px; margin-top: 44px; align-items: stretch;">
+
+      <div style="border: 1px solid #E7EBF2; border-radius: 16px; padding: 30px 24px; display: flex; flex-direction: column;">
+        <h3 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #1857D6; text-align: center;">Plano A</h3>
+        <p style="margin: 0 0 6px; text-align: center;"><span style="font-size: 15px; font-weight: 700; color: #5A6A80;">R$ </span><span style="font-size: 42px; font-weight: 800; letter-spacing: -0.02em;">199</span><span style="font-size: 14px; color: #7A889C; font-weight: 600;">/mês</span></p>
+        <p style="margin: 14px 0 20px; font-size: 13.5px; line-height: 1.5; color: #5A6A80; text-align: center;">Recursos essenciais para sua empresa começar.</p>
+        <div style="display: grid; gap: 12px; margin-bottom: 26px;">
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Ramal em todos os dispositivos</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>URA e filas de atendimento</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Relatórios de chamadas</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Suporte especializado</div>
+        </div>
+        <a href="#contato" style="margin-top: auto; text-align: center; background: #1857D6; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 18px; border-radius: 9px;" style-hover="background: #0A2A5E; color: #ffffff;">Contratar agora</a>
+      </div>
+
+      <div style="border: 2px solid #1857D6; border-radius: 16px; padding: 30px 24px; display: flex; flex-direction: column; position: relative; box-shadow: 0 26px 50px -30px rgba(24,87,214,0.65);">
+        <span style="position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #1EA0E8; color: #ffffff; font-size: 10.5px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 20px; white-space: nowrap;">Mais escolhido</span>
+        <h3 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #1857D6; text-align: center;">Plano B</h3>
+        <p style="margin: 0 0 6px; text-align: center;"><span style="font-size: 15px; font-weight: 700; color: #5A6A80;">R$ </span><span style="font-size: 42px; font-weight: 800; letter-spacing: -0.02em;">249</span><span style="font-size: 14px; color: #7A889C; font-weight: 600;">/mês</span></p>
+        <p style="margin: 14px 0 20px; font-size: 13.5px; line-height: 1.5; color: #5A6A80; text-align: center;">Mais recursos e flexibilidade para crescer.</p>
+        <div style="display: grid; gap: 12px; margin-bottom: 26px;">
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Todos os itens do Plano A</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Gravação de chamadas</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Monitoramento de ramais</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Integrações avançadas</div>
+        </div>
+        <a href="#contato" style="margin-top: auto; text-align: center; background: #1857D6; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 18px; border-radius: 9px;" style-hover="background: #0A2A5E; color: #ffffff;">Contratar agora</a>
+      </div>
+
+      <div style="border: 1px solid #E7EBF2; border-radius: 16px; padding: 30px 24px; display: flex; flex-direction: column;">
+        <h3 style="margin: 0 0 16px; font-size: 20px; font-weight: 800; color: #1857D6; text-align: center;">Plano C</h3>
+        <p style="margin: 0 0 6px; text-align: center;"><span style="font-size: 15px; font-weight: 700; color: #5A6A80;">R$ </span><span style="font-size: 42px; font-weight: 800; letter-spacing: -0.02em;">300</span><span style="font-size: 14px; color: #7A889C; font-weight: 600;">/mês</span></p>
+        <p style="margin: 14px 0 20px; font-size: 13.5px; line-height: 1.5; color: #5A6A80; text-align: center;">Mais performance para operações maiores.</p>
+        <div style="display: grid; gap: 12px; margin-bottom: 26px;">
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Todos os itens do Plano B</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Número 0800 / 400X</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Relatórios avançados</div>
+          <div style="display: flex; gap: 10px; font-size: 13.5px; line-height: 1.45; color: #2A3A52; font-weight: 600;"><span style="color: #22B07D; font-weight: 800;">✓</span>Prioridade no suporte</div>
+        </div>
+        <a href="#contato" style="margin-top: auto; text-align: center; background: #1857D6; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 18px; border-radius: 9px;" style-hover="background: #0A2A5E; color: #ffffff;">Contratar agora</a>
+      </div>
+
+      <div style="border: 1px solid #DCE6F7; background: #F4F8FE; border-radius: 16px; padding: 30px 24px; display: flex; flex-direction: column; text-align: center;">
+        <h3 style="margin: 0 0 20px; font-size: 20px; font-weight: 800; color: #1857D6;">Plano Personalizado</h3>
+        <div style="width: 64px; height: 64px; border-radius: 50%; background: #EAF1FD; margin: 0 auto 22px; display: flex; align-items: center; justify-content: center;"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3v-7a9 9 0 0 1 18 0v7h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path><path d="M21 19v1a4 4 0 0 1-4 4h-5"></path></svg></div>
+        <p style="margin: 0; font-size: 14px; line-height: 1.6; color: #5A6A80;">Sua empresa precisa de uma estrutura diferente? Montamos uma solução sob medida para sua operação.</p>
+        <p style="margin: 16px 0 0; font-size: 13.5px; font-weight: 800; color: #0A2A5E;">Sob consulta</p>
+        <a href="#contato" style="margin-top: auto; text-align: center; border: 1.5px solid #1857D6; color: #1857D6; font-size: 13px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; padding: 14px 18px; border-radius: 9px;" style-hover="background: #1857D6; color: #ffffff;">Falar com especialista</a>
+      </div>
+    </div>
+    <p style="margin: 26px 0 0; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; font-size: 13.5px; color: #7A889C; font-weight: 600;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: 0 0 auto;"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg>Sem fidelidade • Contratação rápida • Cancelamento fácil</p>
+  </section>
+
+  <section id="como-funciona" style="max-width: 1200px; margin: 0 auto; padding: 84px 24px 0; display: grid; grid-template-columns: 1.05fr 1fr; gap: 56px; align-items: center;">
+    <div style="aspect-ratio: 16 / 10; display: flex; align-items: center; justify-content: center;">
+      <img src="uploads/notebook - celular - telefone.png" alt="Notebook, celular e telefone IP conectados ao painel de ramais" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+    <div>
+      <h2 style="margin: 0; font-size: 38px; line-height: 1.12; font-weight: 800; letter-spacing: -0.015em;">Seu ramal onde sua equipe estiver.</h2>
+      <p style="margin: 20px 0 0; font-size: 17px; line-height: 1.6; color: #5A6A80; max-width: 30em; text-wrap: pretty;">Atenda clientes de qualquer lugar, com a mesma qualidade e os recursos que sua empresa precisa.</p>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-top: 36px;">
+        <div style="text-align: center;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: #EAF1FD; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg></div>
+          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2A3A52; line-height: 1.35;">Smartphone</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: #EAF1FD; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"></rect><line x1="2" y1="20" x2="22" y2="20"></line></svg></div>
+          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2A3A52; line-height: 1.35;">Computador</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: #EAF1FD; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2a9 9 0 0 1 9 9"></path><path d="M13 6a5 5 0 0 1 5 5"></path><path d="M22.001 16.914a1.99 1.99 0 0 1-2.033 1.986 16 16 0 0 1-6.669-1.9 15.5 15.5 0 0 1-4.28-3.72 15 15 0 0 1-3.717-4.283 16 16 0 0 1-1.898-6.702A2 2 0 0 1 5.398 0h3.001a1 1 0 0 1 1 .95 12.5 12.5 0 0 0 .74 3.71 1 1 0 0 1-.212 1.05L8.29 6.34a.997.997 0 0 0-.115 1.281 13.5 13.5 0 0 0 3.951 3.949 1 1 0 0 0 1.28-.114l.629-.629a1 1 0 0 1 1.05-.212c1.198.409 2.435.66 3.699.74a1 1 0 0 1 .949 1.001z"></path></svg></div>
+          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2A3A52; line-height: 1.35;">Telefone IP</p>
+        </div>
+        <div style="text-align: center;">
+          <div style="width: 56px; height: 56px; border-radius: 14px; background: #EAF1FD; margin: 0 auto 12px; display: flex; align-items: center; justify-content: center;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5"></path><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"></path></svg></div>
+          <p style="margin: 0; font-size: 13px; font-weight: 700; color: #2A3A52; line-height: 1.35;">Home office</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top: 84px; background: #F7F9FC; padding: 56px 24px; border-top: 1px solid #EDF1F7; border-bottom: 1px solid #EDF1F7;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p style="margin: 0 0 30px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #7A889C;">Empresas que confiam na Ramal Virtual</p>
+      <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 44px;">
+        <img src="uploads/amazon-ajustado.png" alt="Amazon" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+        <img src="uploads/itapemirim-ajustado.png" alt="Itapemirim" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+        <img src="uploads/ciesp-ajustado.png" alt="CIESP" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+        <img src="uploads/ace-ajustado.png" alt="ACE Guarulhos" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+        <img src="uploads/construcal-ajustado.png" alt="Construcal" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+        <img src="uploads/ace-aruja-ajustado.png" alt="ACE Arujá" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.65; transition: filter 300ms ease, opacity 300ms ease;" style-hover="filter: grayscale(0); opacity: 1;">
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="max-width: 1040px; margin: 0 auto; padding: 84px 24px 0;">
+    <p style="margin: 0 0 14px; text-align: center; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #1EA0E8;">Dúvidas frequentes</p>
+    <h2 style="margin: 0 auto; max-width: 20em; text-align: center; font-size: 38px; line-height: 1.15; font-weight: 800; letter-spacing: -0.015em;">Respostas para suas principais dúvidas</h2>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 44px; align-items: start;">
+      <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="8">
+        <div style="border: 1px solid #E7EBF2; border-radius: 12px; background: #ffffff; overflow: hidden;">
+          <button type="button" onClick="{{ item.toggle }}" aria-expanded="{{ item.openStr }}" style="width: 100%; background: none; border: 0; text-align: left; display: flex; align-items: center; gap: 16px; padding: 18px 20px; cursor: pointer; font-size: 14.5px; font-weight: 700; color: #0F1B2D; line-height: 1.4;" style-hover="background: #F7F9FC;">
+            <span style="flex: 1;">{{ item.q }}</span>
+            <span style="flex: 0 0 auto; color: #1857D6; font-size: 13px;">{{ item.chevron }}</span>
+          </button>
+          <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+            <p style="margin: 0; padding: 0 20px 20px; font-size: 14px; line-height: 1.6; color: #5A6A80; text-wrap: pretty;">{{ item.a }}</p>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="contato" style="margin-top: 84px; background: #1857D6; padding: 78px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; align-items: start;">
+      <div>
+        <p style="margin: 0 0 14px; font-size: 12px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: #A8C8F5;">Fale com um especialista</p>
+        <h2 style="margin: 0; font-size: 38px; line-height: 1.12; font-weight: 800; letter-spacing: -0.015em; color: #ffffff;">Pronto para modernizar a telefonia da sua empresa?</h2>
+        <p style="margin: 20px 0 0; font-size: 16.5px; line-height: 1.65; color: #DCE8FB;">Preencha o formulário e um especialista entra em contato com você.</p>
+        <div style="display: grid; gap: 12px; margin-top: 30px;">
+          <div style="display: flex; gap: 10px; font-size: 14.5px; font-weight: 700; color: #ffffff;"><span style="color: #8FD7FF;">✓</span>Sem fidelidade e cancelamento fácil</div>
+          <div style="display: flex; gap: 10px; font-size: 14.5px; font-weight: 700; color: #ffffff;"><span style="color: #8FD7FF;">✓</span>Solução sob medida para sua operação</div>
+          <div style="display: flex; gap: 10px; font-size: 14.5px; font-weight: 700; color: #ffffff;"><span style="color: #8FD7FF;">✓</span>Atendimento rápido, sem compromisso</div>
+        </div>
+        <p style="margin: 30px 0 0; font-size: 14px; line-height: 1.6; color: #C3D9F8; font-style: italic; max-width: 28em;">PS: sem fidelidade, sem obra, sem complicação — seu ramal já pode estar na nuvem essa semana.</p>
+      </div>
+
+      <form onSubmit="{{ onSubmit }}" noValidate="{{ true }}" style="background: #ffffff; border-radius: 16px; padding: 30px; display: grid; gap: 16px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+          <div style="display: grid; gap: 6px;">
+            <label for="rv-nome" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">Nome completo*</label>
+            <input id="rv-nome" name="nome" type="text" value="{{ f.nome }}" onChange="{{ onChange }}" placeholder="Seu nome" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D;" style-focus="border-color: #1857D6;">
+            <sc-if value="{{ e.nome }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600;">{{ e.nome }}</span></sc-if>
+          </div>
+          <div style="display: grid; gap: 6px;">
+            <label for="rv-empresa" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">Empresa*</label>
+            <input id="rv-empresa" name="empresa" type="text" value="{{ f.empresa }}" onChange="{{ onChange }}" placeholder="Nome da empresa" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D;" style-focus="border-color: #1857D6;">
+            <sc-if value="{{ e.empresa }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600;">{{ e.empresa }}</span></sc-if>
+          </div>
+          <div style="display: grid; gap: 6px;">
+            <label for="rv-whats" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">WhatsApp / Telefone*</label>
+            <input id="rv-whats" name="whatsapp" type="tel" value="{{ f.whatsapp }}" onChange="{{ onChange }}" placeholder="(00) 00000-0000" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D;" style-focus="border-color: #1857D6;">
+            <sc-if value="{{ e.whatsapp }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600;">{{ e.whatsapp }}</span></sc-if>
+          </div>
+          <div style="display: grid; gap: 6px;">
+            <label for="rv-email" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">E-mail*</label>
+            <input id="rv-email" name="email" type="email" value="{{ f.email }}" onChange="{{ onChange }}" placeholder="voce@empresa.com.br" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D;" style-focus="border-color: #1857D6;">
+            <sc-if value="{{ e.email }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600;">{{ e.email }}</span></sc-if>
+          </div>
+        </div>
+        <div style="display: grid; gap: 6px;">
+          <label for="rv-ramais" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">Número de ramais desejado*</label>
+          <select id="rv-ramais" name="ramais" value="{{ f.ramais }}" onChange="{{ onChange }}" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D; background: #ffffff;" style-focus="border-color: #1857D6;">
+            <option value="">Selecione uma faixa</option>
+            <option value="1-5">1 a 5 ramais</option>
+            <option value="6-15">6 a 15 ramais</option>
+            <option value="16-30">16 a 30 ramais</option>
+            <option value="31-100">31 a 100 ramais</option>
+            <option value="100+">Mais de 100 ramais</option>
+          </select>
+          <sc-if value="{{ e.ramais }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600;">{{ e.ramais }}</span></sc-if>
+        </div>
+        <div style="display: grid; gap: 6px;">
+          <label for="rv-msg" style="font-size: 12.5px; font-weight: 700; color: #2A3A52;">Mensagem (opcional)</label>
+          <textarea id="rv-msg" name="mensagem" rows="3" value="{{ f.mensagem }}" onChange="{{ onChange }}" placeholder="Conte rapidamente sobre sua operação" style="border: 1.5px solid #DDE4EF; border-radius: 9px; padding: 12px 14px; font-size: 14px; color: #0F1B2D; resize: vertical;" style-focus="border-color: #1857D6;"></textarea>
+        </div>
+        <label style="display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; line-height: 1.5; color: #5A6A80; cursor: pointer;">
+          <input name="lgpd" type="checkbox" checked="{{ f.lgpd }}" onChange="{{ onChange }}" style="margin-top: 2px; width: 16px; height: 16px; accent-color: #1857D6; flex: 0 0 auto;">
+          <span>Autorizo o contato da Ramal Virtual Telecom e o tratamento dos meus dados conforme a LGPD.*</span>
+        </label>
+        <sc-if value="{{ e.lgpd }}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; color: #C0392B; font-weight: 600; margin-top: -8px;">{{ e.lgpd }}</span></sc-if>
+        <button type="submit" style="background: #0A2A5E; color: #ffffff; border: 0; border-radius: 9px; padding: 16px; font-size: 14px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer;" style-hover="background: #1857D6;">Solicitar orçamento</button>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <p style="margin: 0; padding: 12px 14px; background: #EAF7F1; border-radius: 9px; font-size: 13.5px; font-weight: 700; color: #1B7A55;">Recebemos seus dados. Um especialista entra em contato em breve.</p>
+        </sc-if>
+      </form>
+    </div>
+  </section>
+
+  <footer style="background: #0A2A5E; padding: 60px 24px 26px;">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.1fr; gap: 44px;">
+      <div>
+        <img src="uploads/logo RV branco (1).jpg.jpeg" alt="Ramal Virtual Telecom" style="height: 52px; width: auto; display: block;">
+        <p style="margin: 20px 0 0; font-size: 13.5px; line-height: 1.6; color: #A8C0E0; max-width: 26em;">Soluções completas em telefonia em nuvem para empresas que buscam mais mobilidade, qualidade e eficiência.</p>
+      </div>
+      <div>
+        <p style="margin: 0 0 16px; font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #7FA8DC;">Navegação</p>
+        <div style="display: grid; gap: 11px;">
+          <a href="#solucao" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Soluções</a>
+          <a href="#beneficios" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Benefícios</a>
+          <a href="#planos" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Planos</a>
+          <a href="#como-funciona" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Como funciona</a>
+          <a href="#faq" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin: 0 0 16px; font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #7FA8DC;">Acesso rápido</p>
+        <div style="display: grid; gap: 11px;">
+          <a href="#contato" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Área do cliente</a>
+          <a href="#contato" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Acesso ao PABX</a>
+          <a href="#contato" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Relatório de telefonia</a>
+          <a href="#contato" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">Suporte técnico</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin: 0 0 16px; font-size: 11.5px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #7FA8DC;">Contato</p>
+        <div style="display: grid; gap: 11px;">
+          <span style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;">(11) 3090-0900</span>
+          <span style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;">0800 580 0400</span>
+          <a href="mailto:contato@ramalvirtual.com.br" style="font-size: 13.5px; color: #DCE8FB; font-weight: 500;" style-hover="color: #ffffff;">contato@ramalvirtual.com.br</a>
+          <span style="font-size: 13.5px; color: #A8C0E0; font-weight: 500;">Segunda a sexta, das 8h às 18h</span>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1200px; margin: 40px auto 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,0.16); display: flex; flex-wrap: wrap; gap: 18px; align-items: center;">
+      <p style="margin: 0; font-size: 12.5px; color: #8FAAD0;">© 2026 Ramal Virtual Telecom. Todos os direitos reservados.</p>
+      <div style="margin-left: auto; display: flex; gap: 22px;">
+        <a href="#top" style="font-size: 12.5px; color: #8FAAD0;" style-hover="color: #ffffff;">Política de Privacidade</a>
+        <a href="#top" style="font-size: 12.5px; color: #8FAAD0;" style-hover="color: #ffffff;">Termos de Uso</a>
+      </div>
+    </div>
+  </footer>
+</main>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;headlineVariant&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;A — Clareza&quot;,&quot;B — Mobilidade&quot;,&quot;C — Crescimento&quot;],&quot;default&quot;:&quot;A — Clareza&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Copy&quot;}}">
+const FAQ = [
+  ["O que eu preciso pra usar o Ramal Virtual?", "Basta internet estável e um dispositivo: computador, smartphone ou telefone IP. Nós configuramos a central em nuvem e entregamos os ramais prontos para uso."],
+  ["Preciso trocar minha operadora?", "Não. O Ramal Virtual funciona em paralelo à sua operadora atual, sem precisar portar seu número."],
+  ["Consigo usar número 0800 ou 400X?", "Sim. Números 0800 e 400X estão disponíveis a partir do Plano C ou como serviço adicional nos outros planos."],
+  ["O Ramal Virtual é VoIP?", "Sim, a tecnologia é VoIP em nuvem — com qualidade de áudio e recursos equivalentes aos de uma central tradicional, sem estrutura física."],
+  ["Posso integrar com minha estrutura atual?", "Sim. Integramos com sistemas administrativos, CRMs e equipamentos legados já utilizados pela sua empresa."],
+  ["Posso usar meu ramal no celular?", "Sim. O mesmo ramal acompanha você no aplicativo do celular, no computador e no telefone IP."],
+  ["Como funciona o suporte?", "Suporte especializado e humanizado por telefone, e-mail e WhatsApp, com prioridade de atendimento nos planos superiores."],
+  ["E se eu não gostar?", "Sem fidelidade e cancelamento fácil — você testa sem risco de ficar preso a um contrato longo."],
+];
+
+const HEADLINES = {
+  "A — Clareza": ["Seu PABX corporativo,", "direto na nuvem."],
+  "B — Mobilidade": ["Sua empresa atende de qualquer lugar,", "sem fio, sem sala técnica."],
+  "C — Crescimento": ["Telefonia que cresce", "junto com sua empresa."],
+};
+
+class Component extends DCLogic {
+  state = {
+    open: 0,
+    sent: false,
+    errors: {},
+    form: { nome: "", empresa: "", whatsapp: "", email: "", ramais: "", mensagem: "", lgpd: false },
+  };
+
+  onChange = (ev) => {
+    const t = ev.target;
+    const val = t.type === "checkbox" ? t.checked : t.value;
+    this.setState((s) => ({ form: { ...s.form, [t.name]: val }, sent: false }));
+  };
+
+  onSubmit = (ev) => {
+    ev.preventDefault();
+    const f = this.state.form;
+    const errors = {};
+    if (!f.nome.trim()) errors.nome = "Informe seu nome.";
+    if (!f.empresa.trim()) errors.empresa = "Informe o nome da empresa.";
+    if (f.whatsapp.replace(/\D/g, "").length < 10) errors.whatsapp = "Informe um telefone válido com DDD.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(f.email.trim())) errors.email = "Informe um e-mail válido.";
+    if (!f.ramais) errors.ramais = "Selecione a quantidade de ramais.";
+    if (!f.lgpd) errors.lgpd = "É necessário aceitar o consentimento LGPD.";
+    this.setState({ errors, sent: Object.keys(errors).length === 0 });
+  };
+
+  renderVals() {
+    const variant = this.props.headlineVariant ?? "A — Clareza";
+    const [heroLine1, heroLine2] = HEADLINES[variant] || HEADLINES["A — Clareza"];
+    const pabxMatch = heroLine1.match(/PABX/);
+    const heroPre = pabxMatch ? heroLine1.slice(0, pabxMatch.index) : heroLine1;
+    const heroHighlight = pabxMatch ? "PABX" : "";
+    const heroPost = pabxMatch ? heroLine1.slice(pabxMatch.index + 4) : "";
+    const faqs = FAQ.map(([q, a], i) => {
+      const open = this.state.open === i;
+      return {
+        q, a, open,
+        openStr: open ? "true" : "false",
+        chevron: open ? "▲" : "▼",
+        toggle: () => this.setState((s) => ({ open: s.open === i ? -1 : i })),
+      };
+    });
+    return {
+      heroLine1, heroLine2, heroPre, heroHighlight, heroPost, faqs,
+      f: this.state.form,
+      e: this.state.errors,
+      sent: this.state.sent,
+      onChange: this.onChange,
+      onSubmit: this.onSubmit,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
