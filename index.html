@@ -204,6 +204,7 @@
   .hero-fact svg{ flex:0 0 auto; }
 
   .hero-art{ position:relative; }
+  .hero-particles{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
   .hero-art-glow{ position:absolute; inset:-8% -6% 8% 10%; background:radial-gradient(circle at 65% 35%, rgba(30,160,232,0.16), rgba(255,255,255,0) 68%); border-radius:50%; }
   .hero-art-frame{ position:relative; aspect-ratio:1536/1024; display:flex; align-items:center; justify-content:center; }
   .hero-art-frame img{ width:100%; height:100%; object-fit:contain; }
@@ -542,6 +543,7 @@
       </div>
     </div>
     <div class="hero-art">
+      <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
       <div class="hero-art-glow"></div>
       <div class="hero-art-frame">
         <img src="uploads/homem mexendo no notebook e mulher no celular.png" alt="Homem no notebook e mulher ao telefone, atendendo clientes" width="1536" height="1024" loading="eager">
@@ -924,6 +926,122 @@
   window.addEventListener("resize", function(){
     if (window.innerWidth > 860) closePanel();
   });
+
+  /* Hero particle drift (network of drifting nodes + rising beams, in Ramal Virtual's blue/cyan palette) */
+  (function(){
+    var canvas = document.getElementById("heroParticles");
+    if (!canvas || !canvas.getContext) return;
+    var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var ctx = canvas.getContext("2d");
+    var width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var nodes = [], beams = [];
+    var NODE_COUNT = 46, BEAM_COUNT = 7, LINK_DIST = 110;
+    var rafId = null;
+
+    function resize(){
+      var rect = canvas.getBoundingClientRect();
+      width = rect.width;
+      height = rect.height;
+      canvas.width = Math.max(1, Math.round(width * dpr));
+      canvas.height = Math.max(1, Math.round(height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initParticles(){
+      nodes = Array.from({ length: NODE_COUNT }).map(function(){
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vy: (Math.random() * 0.18) + 0.05,
+          r: (Math.random() * 1.1) + 1
+        };
+      });
+      beams = Array.from({ length: BEAM_COUNT }).map(function(){
+        return {
+          x: Math.random() * width,
+          y: Math.random() * height,
+          length: Math.random() * 60 + 40,
+          speed: (Math.random() * 1.1) + 0.6,
+          opacity: Math.random() * 0.3 + 0.18
+        };
+      });
+    }
+
+    function draw(){
+      ctx.clearRect(0, 0, width, height);
+
+      beams.forEach(function(b){
+        b.y -= b.speed;
+        if (b.y + b.length < 0) {
+          b.y = height + 40;
+          b.x = Math.random() * width;
+        }
+        var g = ctx.createLinearGradient(b.x, b.y, b.x, b.y + b.length);
+        g.addColorStop(0, "rgba(30,160,232," + b.opacity + ")");
+        g.addColorStop(1, "rgba(30,160,232,0)");
+        ctx.strokeStyle = g;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(b.x, b.y);
+        ctx.lineTo(b.x, b.y + b.length);
+        ctx.stroke();
+      });
+
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        var n1 = nodes[i];
+        for (var j = i + 1; j < nodes.length; j++) {
+          var n2 = nodes[j];
+          var d = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+          if (d < LINK_DIST) {
+            ctx.strokeStyle = "rgba(24,87,214," + (0.14 * (1 - d / LINK_DIST)) + ")";
+            ctx.beginPath();
+            ctx.moveTo(n1.x, n1.y);
+            ctx.lineTo(n2.x, n2.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(function(n){
+        n.y -= n.vy;
+        if (n.y < -10) {
+          n.y = height + 10;
+          n.x = Math.random() * width;
+        }
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(30,160,232,0.55)";
+        ctx.fill();
+      });
+
+      rafId = requestAnimationFrame(draw);
+    }
+
+    function drawStaticFrame(){
+      ctx.clearRect(0, 0, width, height);
+      nodes.forEach(function(n){
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(30,160,232,0.4)";
+        ctx.fill();
+      });
+    }
+
+    function start(){
+      resize();
+      initParticles();
+      if (rafId) cancelAnimationFrame(rafId);
+      if (reduceMotion) drawStaticFrame();
+      else draw();
+    }
+
+    start();
+    window.addEventListener("resize", function(){
+      if (rafId) cancelAnimationFrame(rafId);
+      start();
+    });
+  })();
 
   /* Floating WhatsApp bubble */
   var waBubble = document.getElementById("waBubble");
