@@ -165,6 +165,7 @@
 
   /* ---------- Hero ---------- */
   #top .hero{
+    position:relative; z-index:0;
     max-width:1200px; margin:0 auto; padding:56px 24px 40px;
     display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center;
   }
@@ -204,7 +205,7 @@
   .hero-fact svg{ flex:0 0 auto; }
 
   .hero-art{ position:relative; }
-  .hero-particles{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+  .hero-particles{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
   .hero-art-glow{ position:absolute; inset:-8% -6% 8% 10%; background:radial-gradient(circle at 65% 35%, rgba(30,160,232,0.16), rgba(255,255,255,0) 68%); border-radius:50%; }
   .hero-art-frame{ position:relative; aspect-ratio:1536/1024; display:flex; align-items:center; justify-content:center; }
   .hero-art-frame img{ width:100%; height:100%; object-fit:contain; }
@@ -515,6 +516,7 @@
 <main id="top">
 
   <section class="hero">
+    <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
     <div>
       <p class="eyebrow">Telefonia em nuvem para empresas</p>
       <h1>Seu PABX corporativo,<br><span class="accent">direto na nuvem.</span></h1>
@@ -543,7 +545,6 @@
       </div>
     </div>
     <div class="hero-art">
-      <canvas id="heroParticles" class="hero-particles" aria-hidden="true"></canvas>
       <div class="hero-art-glow"></div>
       <div class="hero-art-frame">
         <img src="uploads/homem mexendo no notebook e mulher no celular.png" alt="Homem no notebook e mulher ao telefone, atendendo clientes" width="1536" height="1024" loading="eager">
@@ -935,7 +936,7 @@
     var ctx = canvas.getContext("2d");
     var width = 0, height = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
     var nodes = [], beams = [];
-    var NODE_COUNT = 46, BEAM_COUNT = 7, LINK_DIST = 110;
+    var NODE_COUNT = 78, BEAM_COUNT = 11, LINK_DIST = 110;
     var rafId = null;
 
     function resize(){
