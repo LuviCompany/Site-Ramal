@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Funcionalidades | RamalVirtual Telecom</title>
+<meta name="description" content="Conheça todas as funcionalidades da RamalVirtual: telefonia em nuvem, gestão, integrações e inteligência artificial para conectar sua empresa com mais eficiência.">
+<meta name="theme-color" content="#1857D6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1857D6;
+    --blue-dark:#0A2A5E;
+    --cyan:#1EA0E8;
+    --ink:#0F1B2D;
+    --muted:#5A6A80;
+    --muted-2:#7A889C;
+    --border:#E7EBF2;
+    --bg-soft:#F7F9FC;
+    --green:#22B07D;
+    --red:#C0392B;
+  }
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body{
+    margin:0;
+    font-family:Manrope,Helvetica,Arial,sans-serif;
+    background:#fff;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:var(--blue); text-decoration:none; }
+  a:hover{ color:var(--blue-dark); }
+  input,select,textarea,button{ font-family:inherit; }
+  button{ cursor:pointer; }
+  :focus-visible{ outline:3px solid var(--cyan); outline-offset:2px; }
+  .container{ max-width:1200px; margin:0 auto; padding:0 24px; }
+  .visually-hidden{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,255,255,0.94);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .header-inner{
+    max-width:1200px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; gap:22px;
+  }
+  .logo{ display:flex; align-items:center; flex:0 0 auto; }
+  .logo img{ height:48px; width:auto; }
+  .header-right{ display:flex; align-items:center; gap:20px; margin-left:auto; }
+  nav.main-nav{ display:flex; gap:20px; align-items:center; }
+  nav.main-nav a{ font-size:14px; font-weight:600; color:#3D4C63; white-space:nowrap; }
+  nav.main-nav a:hover{ color:var(--blue); }
+  nav.main-nav a.active{ color:var(--blue); }
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; letter-spacing:0.05em; text-transform:uppercase;
+    padding:16px 30px; border-radius:9px; border:1.5px solid transparent;
+    transition:background .15s ease,color .15s ease,border-color .15s ease,box-shadow .15s ease;
+    text-align:center;
+  }
+  .btn-header{
+    flex:0 0 auto; border:1.5px solid var(--blue); color:var(--blue);
+    font-size:13px; padding:11px 20px;
+  }
+  .btn-header:hover{ background:var(--blue); color:#fff; }
+  .btn-ghost{ border-color:#C9D6EC; color:var(--muted-2); background:#fff; }
+  .btn-ghost:hover{ background:var(--bg-soft); color:var(--ink); border-color:#B7C4DA; }
+  .whatsapp-btn{
+    flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+    width:42px; height:42px; background:#25D366; border-radius:50%;
+    box-shadow:0 0 0 1px rgba(37,211,102,0.4), 0 0 18px 2px rgba(37,211,102,0.65), 0 0 34px 6px rgba(37,211,102,0.35);
+    transition:box-shadow .2s ease;
+  }
+  .whatsapp-btn:hover{ box-shadow:0 0 0 1px rgba(37,211,102,0.55), 0 0 22px 4px rgba(37,211,102,0.85), 0 0 44px 10px rgba(37,211,102,0.5); }
+
+  /* ---------- Floating WhatsApp widget ---------- */
+  .wa-float{ position:fixed; right:20px; bottom:20px; z-index:85; display:flex; flex-direction:column; align-items:flex-end; gap:14px; }
+  @keyframes waPulse{
+    0%,100%{ box-shadow:0 0 0 0 rgba(37,211,102,0.55), 0 10px 24px -8px rgba(10,42,94,0.45); }
+    50%{ box-shadow:0 0 0 12px rgba(37,211,102,0), 0 10px 24px -8px rgba(10,42,94,0.45); }
+  }
+  .wa-fab{
+    display:flex; align-items:center; justify-content:center; width:58px; height:58px;
+    background:#25D366; border-radius:50%; flex:0 0 auto;
+    animation:waPulse 2.6s ease-out infinite; transition:transform .15s ease;
+  }
+  .wa-fab:hover{ transform:scale(1.06); }
+  .wa-bubble{
+    width:280px; max-width:calc(100vw - 40px); background:#fff; border-radius:16px; padding:16px 18px 18px;
+    box-shadow:0 20px 48px -16px rgba(15,27,45,0.35); border:1px solid var(--border);
+    position:relative; opacity:0; transform:translateY(12px) scale(0.96); pointer-events:none;
+    transition:opacity .25s ease, transform .25s ease;
+  }
+  .wa-bubble.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; }
+  .wa-bubble-close{
+    position:absolute; top:10px; right:10px; width:22px; height:22px; border:0; border-radius:50%;
+    background:var(--bg-soft); color:var(--muted-2); font-size:14px; line-height:1; display:flex;
+    align-items:center; justify-content:center; padding:0;
+  }
+  .wa-bubble-close:hover{ background:var(--border); color:var(--ink); }
+  .wa-bubble-head{ display:flex; align-items:center; gap:10px; margin:0 22px 10px 0; }
+  .wa-bubble-avatar{ width:38px; height:38px; border-radius:50%; background:var(--blue-dark); flex:0 0 auto; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+  .wa-bubble-avatar img{ width:100%; height:100%; object-fit:cover; }
+  .wa-bubble-name{ font-size:13.5px; font-weight:800; color:var(--ink); display:block; }
+  .wa-bubble-status{ font-size:11.5px; color:var(--green); font-weight:600; display:flex; align-items:center; gap:5px; }
+  .wa-bubble-status::before{ content:""; width:6px; height:6px; border-radius:50%; background:var(--green); flex:0 0 auto; }
+  .wa-bubble-msg{ margin:0 0 14px; font-size:13.5px; line-height:1.55; color:#3D4C63; background:var(--bg-soft); border-radius:12px; border-top-left-radius:2px; padding:10px 12px; }
+  .wa-bubble-cta{
+    display:flex; align-items:center; justify-content:center; gap:8px; width:100%; background:#25D366; color:#fff;
+    font-size:13px; font-weight:800; letter-spacing:0.02em; padding:11px 14px; border-radius:9px; transition:background .15s ease;
+  }
+  .wa-bubble-cta:hover{ background:#1EB959; color:#fff; }
+  @media (max-width:640px){
+    .wa-float{ right:14px; bottom:14px; }
+    .wa-fab{ width:52px; height:52px; }
+    .wa-bubble{ width:260px; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .wa-fab{ animation:none; }
+  }
+
+  .hamburger{
+    display:none; flex:0 0 auto; width:42px; height:42px; border:1.5px solid var(--border);
+    border-radius:9px; background:#fff; align-items:center; justify-content:center;
+  }
+  .hamburger span{ display:block; width:20px; height:2px; background:var(--ink); position:relative; }
+  .hamburger span::before,.hamburger span::after{ content:""; position:absolute; left:0; width:20px; height:2px; background:var(--ink); transition:transform .2s ease; }
+  .hamburger span::before{ top:-6px; }
+  .hamburger span::after{ top:6px; }
+  .hamburger.open span{ background:transparent; }
+  .hamburger.open span::before{ transform:translateY(6px) rotate(45deg); }
+  .hamburger.open span::after{ transform:translateY(-6px) rotate(-45deg); }
+
+  .mobile-panel{
+    display:none; position:fixed; inset:0; top:73px; z-index:90;
+    background:#fff; padding:20px 24px 32px; overflow-y:auto;
+  }
+  .mobile-panel.open{ display:block; }
+  .mobile-panel nav{ display:grid; gap:4px; margin-bottom:20px; }
+  .mobile-panel nav a{
+    font-size:16px; font-weight:700; color:var(--ink); padding:14px 6px;
+    border-bottom:1px solid var(--border);
+  }
+  .mobile-panel .btn{ width:100%; margin-bottom:12px; }
+
+  /* ---------- Buttons variants ---------- */
+  .btn-primary{ background:var(--blue); color:#fff; box-shadow:0 10px 24px -12px rgba(24,87,214,0.7); }
+  .btn-primary:hover{ background:var(--blue-dark); color:#fff; }
+  .btn-outline{ border:1.5px solid #C9D6EC; color:var(--blue-dark); }
+  .btn-outline:hover{ border-color:var(--blue); color:var(--blue); }
+  .btn-outline-blue{ border:1.5px solid var(--blue); color:var(--blue); background:transparent; }
+  .btn-outline-blue:hover{ background:var(--blue); color:#fff; }
+  .btn-white{ background:#fff; color:var(--blue); }
+  .btn-white:hover{ background:var(--blue-dark); color:#fff; }
+
+  /* ---------- Hero ---------- */
+  #top .hero{
+    max-width:1200px; margin:0 auto; padding:56px 24px 40px;
+    display:grid; grid-template-columns:1.05fr 1fr; gap:56px; align-items:center;
+  }
+  .eyebrow{ margin:0 0 18px; font-size:12px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); }
+  h1{
+    margin:0; font-size:clamp(30px,4.6vw,54px); line-height:1.08; font-weight:800; letter-spacing:-0.02em;
+  }
+  h1 .accent{
+    display:inline-block;
+    background-image:linear-gradient(110deg,
+      var(--blue) 0%, var(--blue) 38%,
+      #9AC9FF 47%, #F0F7FF 50%, #9AC9FF 53%,
+      var(--blue) 62%, var(--blue) 100%);
+    background-size:300% 100%;
+    background-position:0% 0;
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    color:transparent;
+    animation:heroShine 5s ease-in-out infinite;
+  }
+  @keyframes heroShine{
+    0%,55%{ background-position:0% 0; }
+    85%,100%{ background-position:100% 0; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    h1 .accent{ animation:none; background-position:0% 0; }
+  }
+  .hero-sub{ margin:24px 0 0; font-size:19px; line-height:1.6; color:var(--muted); max-width:30em; }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-top:34px; }
+
+  .hero-art{ position:relative; }
+  .hero-art-glow{ position:absolute; inset:-8% -6% 8% 10%; background:radial-gradient(circle at 65% 35%, rgba(30,160,232,0.16), rgba(255,255,255,0) 68%); border-radius:50%; }
+  .hero-art-frame{ position:relative; aspect-ratio:1672/941; display:flex; align-items:center; justify-content:center; }
+  .hero-art-frame img{ width:100%; height:100%; object-fit:contain; }
+  .hero-cloud{ position:absolute; top:-6%; right:2%; width:96px; height:96px; opacity:0.9; animation:heroFloat 5s ease-in-out infinite; }
+  @keyframes heroFloat{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+  }
+  @media (prefers-reduced-motion:reduce){
+    .hero-cloud{ animation:none; }
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ scroll-margin-top:88px; }
+  .section-pad{ max-width:1200px; margin:0 auto; padding:84px 24px 0; }
+  .section-eyebrow{ margin:0 0 14px; text-align:center; font-size:12px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); }
+  h2{ margin:0 auto; max-width:24em; text-align:center; font-size:clamp(26px,3.4vw,38px); line-height:1.15; font-weight:800; letter-spacing:-0.015em; }
+  .section-lead{ margin:18px auto 0; max-width:46em; text-align:center; font-size:17px; line-height:1.6; color:var(--muted); }
+
+  /* ---------- Cards (reused for problem cards / IA grid) ---------- */
+  .cards-3{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:44px; }
+  .card{ border:1px solid var(--border); border-radius:14px; padding:26px 20px; background:#fff; transition:border-color .15s ease, box-shadow .15s ease; }
+  .card:hover{ border-color:var(--blue); box-shadow:0 16px 34px -22px rgba(24,87,214,0.5); }
+  .card-icon{ width:40px; height:40px; border-radius:10px; background:#EEF3FD; margin-bottom:18px; display:flex; align-items:center; justify-content:center; }
+  .card h3{ margin:0 0 10px; font-size:16px; font-weight:800; line-height:1.3; }
+  .card p{ margin:0; font-size:14px; line-height:1.55; color:var(--muted); }
+
+  /* ---------- Comparativo ---------- */
+  .compare-wrap{
+    margin-top:44px; border:1px solid var(--border); border-radius:16px; overflow:auto;
+    max-height:620px; -webkit-overflow-scrolling:touch;
+  }
+  table.compare-table{ width:100%; min-width:760px; border-collapse:collapse; font-size:13.5px; }
+  .compare-table thead th{
+    position:sticky; top:0; z-index:3; background:var(--blue-dark); color:#fff;
+    font-size:11px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;
+    padding:16px 18px; text-align:center; white-space:nowrap;
+  }
+  .compare-table thead th:first-child{ text-align:left; z-index:5; }
+  .compare-table tbody td{
+    padding:13px 18px; text-align:center; border-bottom:1px solid var(--border); color:#2A3A52;
+    vertical-align:middle;
+  }
+  .compare-table tbody td:first-child{
+    text-align:left; font-weight:700; color:var(--ink); white-space:normal; min-width:260px;
+  }
+  .compare-table td:first-child, .compare-table th:first-child{
+    position:sticky; left:0; z-index:2; box-shadow:2px 0 6px -4px rgba(15,27,45,0.18);
+  }
+  .compare-table tbody tr:nth-child(odd) td{ background:#fff; }
+  .compare-table tbody tr:nth-child(even) td{ background:var(--bg-soft); }
+  .compare-table tbody tr:last-child td{ border-bottom:0; }
+  .avail-icon{ display:inline-flex; width:22px; height:22px; border-radius:50%; background:var(--blue); align-items:center; justify-content:center; flex:0 0 auto; }
+  .badge-optional{ display:inline-block; background:#EEF1F6; color:#5A6A80; font-size:11.5px; font-weight:700; padding:4px 11px; border-radius:20px; white-space:nowrap; }
+  .text-unavailable{ color:#B7C0CE; font-weight:600; }
+  .dash-cell{ color:#C6CFDD; font-weight:800; }
+  .compare-note{ margin:18px 0 0; font-size:12.5px; color:var(--muted-2); text-align:center; }
+
+  /* ---------- Aplicativos (blue) ---------- */
+  .apps-section{ margin-top:84px; background:var(--blue); padding:78px 24px; }
+  .apps-inner{ max-width:1200px; margin:0 auto; }
+  .apps-section .section-eyebrow{ color:#A8C8F5; }
+  .apps-section h2{ color:#fff; }
+  .apps-section .section-lead{ color:#DCE8FB; }
+  .apps-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:44px; }
+  .apps-item{ background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18); border-radius:14px; padding:24px 22px; }
+  .apps-icon{ width:44px; height:44px; border-radius:12px; background:rgba(255,255,255,0.16); margin-bottom:16px; display:flex; align-items:center; justify-content:center; }
+  .apps-item h3{ margin:0 0 8px; font-size:15.5px; font-weight:800; color:#fff; }
+  .apps-item p{ margin:0; font-size:13.5px; line-height:1.55; color:#C3D9F8; }
+
+  /* ---------- Inteligência Artificial ---------- */
+  .ia-section{ padding-bottom:0; }
+  .ia-top{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+  .ia-eyebrow{ margin:0 0 14px; text-align:left; font-size:12px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); }
+  .ia-top h2{ margin:0; text-align:left; max-width:none; }
+  .ia-text{ margin:20px 0 0; font-size:16.5px; line-height:1.65; color:var(--muted); max-width:32em; }
+
+  .ia-card{ background:#fff; border:1px solid var(--border); border-radius:18px; padding:22px; box-shadow:0 30px 60px -32px rgba(24,87,214,0.4); }
+  .ia-card-head{ display:flex; align-items:center; justify-content:space-between; padding-bottom:14px; border-bottom:1px solid var(--border); margin-bottom:16px; }
+  .ia-card-head-left{ display:flex; align-items:center; gap:10px; }
+  .ia-call-dot{ width:8px; height:8px; border-radius:50%; background:var(--green); flex:0 0 auto; }
+  .ia-card-title{ font-size:13.5px; font-weight:800; color:var(--ink); }
+  .ia-card-time{ font-size:12px; color:var(--muted-2); font-weight:700; margin-left:6px; }
+  .ia-card-close{ width:24px; height:24px; border-radius:50%; background:var(--bg-soft); display:flex; align-items:center; justify-content:center; color:var(--muted-2); border:0; flex:0 0 auto; }
+  .ia-block{ margin-bottom:18px; }
+  .ia-block:last-child{ margin-bottom:0; }
+  .ia-block-title{ font-size:10.5px; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted-2); margin-bottom:9px; }
+  .ia-transcript{ display:grid; gap:8px; }
+  .ia-msg{ font-size:12.5px; line-height:1.5; padding:9px 12px; border-radius:10px; max-width:90%; }
+  .ia-msg.client{ background:var(--bg-soft); color:#2A3A52; border-top-left-radius:2px; }
+  .ia-msg.ai{ background:#EAF1FD; color:var(--blue-dark); border-top-right-radius:2px; margin-left:auto; }
+  .ia-msg b{ font-weight:800; }
+  .ia-summary{ margin:0; font-size:12.5px; line-height:1.55; color:var(--muted); }
+  .ia-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .ia-tag{ background:#EAF1FD; color:var(--blue); font-size:11px; font-weight:700; padding:5px 11px; border-radius:20px; }
+  .ia-sentiment{ display:flex; align-items:center; gap:10px; }
+  .ia-sentiment-bar{ flex:1; height:8px; border-radius:6px; background:#EDF1F7; overflow:hidden; }
+  .ia-sentiment-fill{ width:82%; height:100%; background:var(--green); border-radius:6px; }
+  .ia-sentiment-label{ font-size:12px; font-weight:800; color:#1B7A55; white-space:nowrap; }
+  .ia-opportunity{ display:inline-flex; align-items:center; gap:8px; background:#EAF7F1; color:#1B7A55; font-size:12px; font-weight:800; padding:8px 14px; border-radius:10px; }
+
+  .ia-grid{ margin-top:64px; }
+
+  /* ---------- Integrações e Suporte ---------- */
+  .split-section{ max-width:1200px; margin:84px auto 0; padding:0 24px 84px; display:grid; grid-template-columns:1fr 1fr; gap:56px; }
+  .split-eyebrow{ margin:0 0 14px; text-align:left; font-size:12px; font-weight:800; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); }
+  .split-col h2{ margin:0; text-align:left; max-width:none; }
+  .split-text{ margin:18px 0 0; font-size:15.5px; line-height:1.6; color:var(--muted); max-width:30em; }
+  .icon-grid-2{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin-top:32px; }
+  .icon-grid-item{ display:flex; align-items:center; gap:12px; border:1px solid var(--border); border-radius:12px; padding:16px 14px; background:#fff; }
+  .icon-grid-icon{ width:38px; height:38px; border-radius:10px; background:#EAF1FD; display:flex; align-items:center; justify-content:center; flex:0 0 auto; }
+  .icon-grid-item span{ font-size:13px; font-weight:700; color:#2A3A52; line-height:1.3; }
+
+  /* ---------- CTA final ---------- */
+  .final-cta{ margin-top:0; background:var(--blue-dark); padding:56px 24px; text-align:center; }
+  .final-cta h2{ color:#fff; }
+  .final-cta p{ margin:14px auto 0; max-width:40em; color:#C3D9F8; font-size:15.5px; line-height:1.6; }
+  .final-cta .hero-ctas{ justify-content:center; margin-top:28px; }
+
+  /* ---------- Footer ---------- */
+  footer{ background:var(--blue-dark); padding:60px 24px 26px; }
+  .footer-grid{ max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.3fr 1fr 1fr 1.1fr; gap:44px; }
+  .footer-logo img{ height:44px; width:auto; }
+  .footer-desc{ margin:20px 0 0; font-size:13.5px; line-height:1.6; color:#A8C0E0; max-width:26em; }
+  .footer-title{ margin:0 0 16px; font-size:11.5px; font-weight:800; letter-spacing:0.14em; text-transform:uppercase; color:#7FA8DC; }
+  .footer-links{ display:grid; gap:11px; }
+  .footer-links a{ font-size:13.5px; color:#DCE8FB; font-weight:500; }
+  .footer-links a:hover{ color:#fff; }
+  .footer-contact{ display:grid; gap:11px; }
+  .footer-contact span{ font-size:13.5px; color:#DCE8FB; font-weight:500; }
+  .footer-contact span.hours{ color:#A8C0E0; }
+  .footer-contact a{ font-size:13.5px; color:#DCE8FB; font-weight:500; }
+  .footer-contact a:hover{ color:#fff; }
+  .footer-bottom{
+    max-width:1200px; margin:40px auto 0; padding-top:22px; border-top:1px solid rgba(255,255,255,0.16);
+    display:flex; flex-wrap:wrap; gap:18px; align-items:center;
+  }
+  .footer-bottom p{ margin:0; font-size:12.5px; color:#8FAAD0; }
+
+  /* =========================================================
+     RESPONSIVE — Tablet: <=1024px
+     ========================================================= */
+  @media (max-width:1024px){
+    .btn-header.btn-ghost{ display:none; }
+    .header-inner{ gap:18px; }
+    nav.main-nav{ gap:14px; }
+    nav.main-nav a{ font-size:12.5px; }
+    .btn-header{ padding:10px 14px; font-size:12px; }
+    #top .hero{ grid-template-columns:minmax(0,1fr); gap:40px; padding-top:40px; }
+    .hero-art{ max-width:460px; margin:0 auto; }
+    .cards-3{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .apps-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .ia-top{ grid-template-columns:minmax(0,1fr); gap:40px; }
+    .ia-eyebrow,.ia-top h2,.ia-text{ text-align:center; margin-left:auto; margin-right:auto; }
+    .ia-top .hero-ctas{ justify-content:center; }
+    .ia-card{ max-width:480px; margin:0 auto; }
+    .split-section{ grid-template-columns:minmax(0,1fr); gap:48px; }
+    .split-eyebrow,.split-col h2,.split-text{ text-align:center; margin-left:auto; margin-right:auto; }
+    .footer-grid{ grid-template-columns:minmax(0,1fr) minmax(0,1fr); row-gap:36px; }
+  }
+
+  /* =========================================================
+     RESPONSIVE — Nav collapse: <=860px
+     ========================================================= */
+  @media (max-width:860px){
+    nav.main-nav{ display:none; }
+    .btn-header{ display:none; }
+    .hamburger{ display:flex; }
+    .header-inner{ padding:12px 20px; }
+    .logo img{ height:36px; }
+  }
+
+  /* =========================================================
+     RESPONSIVE — Mobile: <=640px
+     ========================================================= */
+  @media (max-width:640px){
+    .container,.section-pad{ padding-left:20px; padding-right:20px; }
+    #top .hero{ padding:32px 20px 32px; }
+    .hero-ctas .btn{ width:100%; }
+    .hero-art{ max-width:340px; margin:28px auto 0; }
+    .hero-cloud{ width:64px; height:64px; }
+    .cards-3{ grid-template-columns:minmax(0,1fr); }
+    .compare-wrap{ max-height:none; }
+    .compare-table thead th{ position:static; }
+    .compare-table td:first-child, .compare-table th:first-child{ min-width:200px; }
+    .apps-grid{ grid-template-columns:minmax(0,1fr); }
+    .split-section{ padding-bottom:56px; }
+    .icon-grid-2{ grid-template-columns:minmax(0,1fr); }
+    .footer-grid{ grid-template-columns:minmax(0,1fr); row-gap:32px; text-align:left; }
+    .footer-logo img{ height:32px; }
+    .footer-bottom{ flex-direction:column; align-items:flex-start; }
+    section{ scroll-margin-top:70px; }
+  }
+
+  @media (max-width:400px){
+    h1{ font-size:clamp(26px,8vw,34px); }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="logo"><img src="uploads/logo-header.png" alt="RamalVirtual Telecom" width="1692" height="972"></a>
+    <div class="header-right">
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="index.html#solucao">Soluções</a>
+        <a href="index.html#beneficios">Benefícios</a>
+        <a href="index.html#planos">Planos</a>
+        <a href="index.html#como-funciona">Como funciona</a>
+        <a href="funcionalidades.html" class="active">Funcionalidades</a>
+        <a href="index.html#faq">FAQ</a>
+      </nav>
+      <a href="index.html#contato" class="btn btn-header btn-ghost">Seja Parceiro</a>
+      <a href="index.html#contato" class="btn btn-header">Falar com especialista</a>
+      <a href="https://wa.me/551130900900" target="_blank" rel="noopener" aria-label="Falar no WhatsApp: (11) 3090-0900" class="whatsapp-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3C4.3 14.8 3.9 13.4 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.6-.7-2.7-1.6-3.5-3.1-.1-.2 0-.4.1-.5.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.2 1 2.4 1.1 2.6.1.2 1.9 3 4.7 4.1 2.7 1.1 2.7.7 3.2.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.2z"></path></svg>
+      </a>
+      <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobilePanel">
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-panel" id="mobilePanel">
+  <nav aria-label="Navegação mobile">
+    <a href="index.html#solucao">Soluções</a>
+    <a href="index.html#beneficios">Benefícios</a>
+    <a href="index.html#planos">Planos</a>
+    <a href="index.html#como-funciona">Como funciona</a>
+    <a href="funcionalidades.html">Funcionalidades</a>
+    <a href="index.html#faq">FAQ</a>
+  </nav>
+  <a href="index.html#contato" class="btn btn-primary">Falar com especialista</a>
+  <a href="https://wa.me/551130900900" target="_blank" rel="noopener" class="btn btn-outline-blue">Chamar no WhatsApp</a>
+  <a href="index.html#contato" class="btn btn-ghost">Seja Parceiro</a>
+</div>
+
+<main id="top">
+
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Funcionalidades da RamalVirtual</p>
+      <h1>Uma telefonia completa para cada <span class="accent">necessidade.</span></h1>
+      <p class="hero-sub">Recursos de telefonia em nuvem, gestão, integrações e inteligência para conectar sua empresa com mais eficiência.</p>
+      <div class="hero-ctas">
+        <a href="index.html#contato" class="btn btn-primary">Falar com especialista</a>
+        <a href="https://checkout.ramalvirtual.com.br/" target="_blank" rel="noopener" class="btn btn-outline-blue">Contratar online</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="hero-art-glow"></div>
+      <svg class="hero-cloud" viewBox="0 0 24 24" fill="none" stroke="#1EA0E8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
+      </svg>
+      <div class="hero-art-frame">
+        <img src="uploads/notebook - celular - telefone.png" alt="Laptop, celular e telefone IP conectados à central RamalVirtual em nuvem" width="1672" height="941" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <section id="comparativo" class="section-pad">
+    <p class="section-eyebrow">Comparativo</p>
+    <h2>Conheça todas as funcionalidades</h2>
+    <p class="section-lead">Compare o que está disponível na contratação online e na contratação assistida.</p>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Funcionalidade</th>
+            <th>Contratação Online</th>
+            <th>Contratação Assistida</th>
+          </tr>
+        </thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+    <p class="compare-note">As células marcadas com "-" indicam um item não aplicável a essa modalidade de contratação.</p>
+  </section>
+
+  <section class="apps-section">
+    <div class="apps-inner">
+      <p class="section-eyebrow">Aplicativos e dispositivos</p>
+      <h2>Telefonia onde sua equipe estiver.</h2>
+      <p class="section-lead">Utilize em diferentes dispositivos com a mesma qualidade e praticidade.</p>
+      <div class="apps-grid">
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></div>
+          <h3>URA</h3>
+          <p>Atendimento automatizado.</p>
+        </div>
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg></div>
+          <h3>Filas de atendimento</h3>
+          <p>Organize e direcione chamadas.</p>
+        </div>
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <h3>Painel administrativo</h3>
+          <p>Gestão completa da sua operação.</p>
+        </div>
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <h3>Horários personalizados</h3>
+          <p>Configure sua rotina de atendimento.</p>
+        </div>
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></div>
+          <h3>Caixa postal</h3>
+          <p>Mensagens sempre disponíveis.</p>
+        </div>
+        <div class="apps-item">
+          <div class="apps-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><line x1="10" y1="9" x2="8" y2="9"></line></svg></div>
+          <h3>Gravação e relatórios</h3>
+          <p>Acompanhe e analise suas chamadas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ia" class="section-pad ia-section">
+    <div class="ia-top">
+      <div>
+        <p class="ia-eyebrow">Inteligência artificial</p>
+        <h2>Transforme sua telefonia em uma máquina de inteligência e vendas.</h2>
+        <p class="ia-text">IA integrada à operação de atendimento para mais agilidade, eficiência e melhores resultados.</p>
+        <div class="hero-ctas">
+          <a href="index.html#contato" class="btn btn-primary">Falar com especialista</a>
+          <a href="https://checkout.ramalvirtual.com.br/" target="_blank" rel="noopener" class="btn btn-outline-blue">Contratar online</a>
+        </div>
+      </div>
+
+      <div class="ia-card">
+        <div class="ia-card-head">
+          <div class="ia-card-head-left">
+            <span class="ia-call-dot"></span>
+            <span class="ia-card-title">Chamada finalizada</span>
+            <span class="ia-card-time">00:12:36</span>
+          </div>
+          <button type="button" class="ia-card-close" aria-label="Fechar" tabindex="-1">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+          </button>
+        </div>
+
+        <div class="ia-block">
+          <p class="ia-block-title">Transcrição</p>
+          <div class="ia-transcript">
+            <p class="ia-msg client"><b>Cliente:</b> Bom dia! Eu queria entender melhor como funciona o plano empresarial de vocês.</p>
+            <p class="ia-msg ai"><b>IA:</b> Bom dia! Claro. O plano empresarial inclui ramais ilimitados, integração com CRM e suporte prioritário. Posso te passar um orçamento?</p>
+            <p class="ia-msg client"><b>Cliente:</b> Pode sim, temos cerca de 20 ramais hoje.</p>
+          </div>
+        </div>
+
+        <div class="ia-block">
+          <p class="ia-block-title">Resumo</p>
+          <p class="ia-summary">Cliente demonstrou interesse no plano empresarial para aproximadamente 20 ramais, com foco em integração com CRM. Solicitou envio de orçamento.</p>
+        </div>
+
+        <div class="ia-block">
+          <p class="ia-block-title">Palavras-chave</p>
+          <div class="ia-tags">
+            <span class="ia-tag">plano empresarial</span>
+            <span class="ia-tag">ramais</span>
+            <span class="ia-tag">integração</span>
+            <span class="ia-tag">orçamento</span>
+          </div>
+        </div>
+
+        <div class="ia-block">
+          <p class="ia-block-title">Sentimento</p>
+          <div class="ia-sentiment">
+            <div class="ia-sentiment-bar"><div class="ia-sentiment-fill"></div></div>
+            <span class="ia-sentiment-label">Positivo</span>
+          </div>
+        </div>
+
+        <div class="ia-block">
+          <p class="ia-block-title">Oportunidade</p>
+          <span class="ia-opportunity">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+            Lead qualificado para comercial
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ia-grid cards-3">
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="22"></line></svg></div>
+        <h3>Agentes de Voz com IA</h3>
+        <p>Atendimento inteligente de chamadas por voz com capacidade conversacional.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2a3.5 3.5 0 0 0-3.5 3.5V6a3 3 0 0 0-2 5.24A3 3 0 0 0 6 17h.5a3.5 3.5 0 0 0 3.5-3.5v-8A3.5 3.5 0 0 0 9.5 2Z"></path><path d="M14.5 2a3.5 3.5 0 0 1 3.5 3.5V6a3 3 0 0 1 2 5.24A3 3 0 0 1 18 17h-.5a3.5 3.5 0 0 1-3.5-3.5v-8A3.5 3.5 0 0 1 14.5 2Z"></path><path d="M6 17c0 1.66 1.34 3 3 3h.34"></path><path d="M18 17c0 1.66-1.34 3-3 3h-.34"></path></svg></div>
+        <h3>Inteligência de Negócios</h3>
+        <p>Mapeamento de palavras-chave e oportunidades comerciais.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg></div>
+        <h3>Gestão da Experiência</h3>
+        <p>Análise de sentimento, detecção de objeções e alertas de insatisfação.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.178 8c5.096 0 5.096 8 0 8-5.095 0-7.133-8-12.739-8-4.585 0-4.585 8 0 8 5.606 0 7.644-8 12.74-8z"></path></svg></div>
+        <h3>Operação em Escala</h3>
+        <p>Atendimento 24 horas por dia, 7 dias por semana, ilimitado e simultâneo, sem filas de espera.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+        <h3>Automação Completa</h3>
+        <p>Qualifica leads, agenda reuniões, consulta pedidos, realiza cobranças e transfere para humanos quando necessário.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 2 16 8 22 8"></polyline><line x1="22" y1="2" x2="16" y2="8"></line><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+        <h3>Call Back e Centralização</h3>
+        <p>Retorno automático para não perder chamadas e número único para múltiplas filiais.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="split-section">
+    <div class="split-col">
+      <p class="split-eyebrow">Integrações</p>
+      <h2>Conecte a telefonia ao seu ecossistema.</h2>
+      <p class="split-text">Integrações com as principais ferramentas de mercado e soluções personalizadas via API e webhooks.</p>
+      <div class="icon-grid-2">
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg></div>
+          <span>CRM</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg></div>
+          <span>ERP</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></div>
+          <span>API</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"></path><path d="M6 17 10.4 5.6a1 1 0 0 1 1.8-.1l1.5 3.16"></path><path d="m14 10 2.5 3.5"></path><path d="M18 16.98a4 4 0 1 0-3.4-6.02L12 16"></path></svg></div>
+          <span>Webhooks</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg></div>
+          <span>WhatsApp</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="21" y1="4" x2="14" y2="4"></line><line x1="10" y1="4" x2="3" y2="4"></line><line x1="21" y1="12" x2="12" y2="12"></line><line x1="8" y1="12" x2="3" y2="12"></line><line x1="21" y1="20" x2="16" y2="20"></line><line x1="12" y1="20" x2="3" y2="20"></line><line x1="14" y1="2" x2="14" y2="6"></line><line x1="8" y1="10" x2="8" y2="14"></line><line x1="16" y1="18" x2="16" y2="22"></line></svg></div>
+          <span>Integrações personalizadas</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="split-col">
+      <p class="split-eyebrow">Suporte</p>
+      <h2>Implantação, treinamento e suporte para sua equipe.</h2>
+      <p class="split-text">Da configuração ao uso diário, nossa equipe está ao seu lado.</p>
+      <div class="icon-grid-2">
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+          <span>Implantação e configuração</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path><path d="M22 10v6"></path><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"></path></svg></div>
+          <span>Treinamento</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3v-7a9 9 0 0 1 18 0v7h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path><path d="M21 19v1a4 4 0 0 1-4 4h-5"></path></svg></div>
+          <span>Suporte</span>
+        </div>
+        <div class="icon-grid-item">
+          <div class="icon-grid-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1857D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <span>Serviços especializados</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <h2>Pronto para modernizar a telefonia da sua empresa?</h2>
+    <p>Fale com um especialista ou contrate online em poucos minutos.</p>
+    <div class="hero-ctas">
+      <a href="index.html#contato" class="btn btn-white">Falar com especialista</a>
+      <a href="https://checkout.ramalvirtual.com.br/" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:rgba(255,255,255,0.4); color:#fff;">Contratar online</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="uploads/logo-footer.png" alt="RamalVirtual Telecom" width="1692" height="968"></div>
+        <p class="footer-desc">Soluções completas em telefonia em nuvem para empresas que buscam mais mobilidade, qualidade e eficiência.</p>
+      </div>
+      <div>
+        <p class="footer-title">Navegação</p>
+        <div class="footer-links">
+          <a href="index.html#solucao">Soluções</a>
+          <a href="index.html#beneficios">Benefícios</a>
+          <a href="index.html#planos">Planos</a>
+          <a href="index.html#como-funciona">Como funciona</a>
+          <a href="funcionalidades.html">Funcionalidades</a>
+          <a href="index.html#faq">FAQ</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Acesso rápido</p>
+        <div class="footer-links">
+          <a href="index.html#contato">Área do cliente</a>
+          <a href="index.html#contato">Acesso ao PABX</a>
+          <a href="index.html#contato">Relatório de telefonia</a>
+          <a href="index.html#contato">Suporte técnico</a>
+          <a href="index.html#contato">Seja um parceiro</a>
+        </div>
+      </div>
+      <div>
+        <p class="footer-title">Contato</p>
+        <div class="footer-contact">
+          <span>(11) 3090-0900</span>
+          <span>0800 580 0400</span>
+          <a href="mailto:contato@ramalvirtual.com.br">contato@ramalvirtual.com.br</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 RamalVirtual Telecom. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+</main>
+
+<div class="wa-float" id="waFloat">
+  <div class="wa-bubble" id="waBubble" role="dialog" aria-label="Fale no WhatsApp">
+    <button type="button" class="wa-bubble-close" id="waBubbleClose" aria-label="Fechar">✕</button>
+    <div class="wa-bubble-head">
+      <div class="wa-bubble-avatar">
+        <img src="uploads/perfil-ig.png" alt="RamalVirtual Telecom" width="1080" height="1080">
+      </div>
+      <div>
+        <span class="wa-bubble-name">RamalVirtual</span>
+        <span class="wa-bubble-status">Online agora</span>
+      </div>
+    </div>
+    <p class="wa-bubble-msg">Olá! 👋 Precisa modernizar a telefonia da sua empresa? Fale agora com um especialista pelo WhatsApp.</p>
+    <a href="https://wa.me/551130900900" target="_blank" rel="noopener" class="wa-bubble-cta">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3C4.3 14.8 3.9 13.4 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.6-.7-2.7-1.6-3.5-3.1-.1-.2 0-.4.1-.5.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.2 1 2.4 1.1 2.6.1.2 1.9 3 4.7 4.1 2.7 1.1 2.7.7 3.2.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.2z"></path></svg>
+      Iniciar conversa
+    </a>
+  </div>
+  <a href="https://wa.me/551130900900" target="_blank" rel="noopener" class="wa-fab" id="waFab" aria-label="Falar no WhatsApp com a RamalVirtual">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#ffffff" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.1c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3C4.3 14.8 3.9 13.4 3.9 12c0-4.5 3.6-8.1 8.1-8.1s8.1 3.6 8.1 8.1-3.6 8.1-8.1 8.1zm4.5-6c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.6-.7-2.7-1.6-3.5-3.1-.1-.2 0-.4.1-.5.2-.2.4-.5.5-.7.1-.2.1-.4 0-.6-.1-.2-.6-1.4-.8-1.9-.2-.4-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.2-.9.9-.9 2.1 0 1.2 1 2.4 1.1 2.6.1.2 1.9 3 4.7 4.1 2.7 1.1 2.7.7 3.2.7.5 0 1.6-.6 1.8-1.2.2-.6.2-1.1.1-1.2-.1-.1-.2-.2-.4-.2z"></path></svg>
+  </a>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Mobile menu */
+  var hamburger = document.getElementById("hamburgerBtn");
+  var panel = document.getElementById("mobilePanel");
+  function closePanel(){
+    panel.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded","false");
+  }
+  hamburger.addEventListener("click", function(){
+    var open = panel.classList.toggle("open");
+    hamburger.classList.toggle("open", open);
+    hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  panel.querySelectorAll("a").forEach(function(a){
+    a.addEventListener("click", closePanel);
+  });
+  window.addEventListener("resize", function(){
+    if (window.innerWidth > 860) closePanel();
+  });
+
+  /* Floating WhatsApp bubble */
+  var waBubble = document.getElementById("waBubble");
+  var waBubbleClose = document.getElementById("waBubbleClose");
+  var waFab = document.getElementById("waFab");
+  var WA_DISMISS_KEY = "rv-wa-bubble-dismissed";
+  if (waBubble && !sessionStorage.getItem(WA_DISMISS_KEY)) {
+    setTimeout(function(){ waBubble.classList.add("show"); }, 2500);
+  }
+  function dismissWaBubble(){
+    waBubble.classList.remove("show");
+    try { sessionStorage.setItem(WA_DISMISS_KEY, "1"); } catch (e) {}
+  }
+  if (waBubbleClose) waBubbleClose.addEventListener("click", dismissWaBubble);
+  if (waFab) waFab.addEventListener("click", dismissWaBubble);
+
+  /* Tabela comparativa (data-driven) */
+  var COMPARE = [
+    ["Número telefônico virtual","Disponível","Disponível"],
+    ["Portabilidade numérica","Disponível","Disponível"],
+    ["Ramais em nuvem","Disponível","Disponível"],
+    ["Chamadas simultâneas","Conforme plano","Conforme projeto"],
+    ["Ligações nacionais","Disponível","Disponível"],
+    ["Ligações internacionais","Indisponível","Conforme contratado"],
+    ["Aplicativo para iOS, Android e Desktop","Disponível","Disponível"],
+    ["Atendimento em celular, computador ou telefone IP","Disponível","Disponível"],
+    ["Transferência de chamadas","Disponível","Disponível"],
+    ["Captura de chamadas","Disponível","Disponível"],
+    ["Música de espera personalizada","Opcional","Disponível"],
+    ["Identificação de chamadas","Disponível","Disponível"],
+    ["Gravação de chamadas","Opcional","Disponível"],
+    ["Relatórios de chamadas","Opcional","Disponível"],
+    ["Painel administrativo","Opcional","Disponível"],
+    ["URA (Atendimento eletrônico)","Opcional","Disponível"],
+    ["Filas de atendimento","Opcional","Disponível"],
+    ["Horários de atendimento personalizados","Opcional","Disponível"],
+    ["Caixa postal / Voicemail","Disponível","Disponível"],
+    ["Módulo Call Center","Opcional","Opcional"],
+    ["Dashboards de atendimento","Opcional","Disponível"],
+    ["Monitoramento de agentes","Opcional","Disponível"],
+    ["Indicadores de desempenho dos atendentes","Indisponível","Disponível / Conforme projeto"],
+    ["Agente de Voz com IA","Indisponível","Disponível / Opcional"],
+    ["Análise de chamadas telefônicas com IA","Indisponível","Disponível / Opcional"],
+    ["Transcrição automática de chamadas","Indisponível","Disponível / Opcional"],
+    ["Resumo automático das ligações por IA","Indisponível","Opcional"],
+    ["Identificação de assuntos e motivos de contato por IA","Indisponível","Opcional"],
+    ["Análise de sentimento das chamadas","Indisponível","Disponível / Opcional"],
+    ["Avaliação automática da qualidade do atendimento","Opcional","Disponível / Opcional"],
+    ["Integração com CRM","Indisponível","Disponível / Opcional"],
+    ["Integração com ERP","Indisponível","Disponível / Opcional"],
+    ["Integrações via API","Indisponível","Disponível / Opcional"],
+    ["Webhooks","Indisponível","Disponível / Opcional"],
+    ["Integração com WhatsApp","Indisponível","Disponível / Opcional"],
+    ["Integrações personalizadas","Indisponível","Disponível / Opcional"],
+    ["Múltiplas unidades / filiais","Opcional","Disponível"],
+    ["Projeto personalizado de telefonia","-","Disponível / Conforme projeto"],
+    ["Configuração realizada pela equipe","Indisponível","Disponível"],
+    ["Implantação acompanhada","Indisponível","Disponível"],
+    ["Treinamento da equipe","Indisponível","Disponível"],
+    ["Suporte eletrônico","Disponível","Disponível"],
+    ["Atendimento humano","Indisponível","Disponível"],
+    ["Prazo de suporte","Até 24h","Prioritário / Até 4h"],
+    ["Suporte em horário comercial","-","Disponível"],
+    ["Plantão técnico","-","Disponível / Conforme contrato"],
+    ["Consultoria especializada","-","Disponível"]
+  ];
+
+  var CHECK_SVG = '<span class="avail-icon" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span><span class="visually-hidden">Disponível</span>';
+
+  function cellHTML(value){
+    if (value === "Disponível") return CHECK_SVG;
+    if (value === "Indisponível") return '<span class="text-unavailable">Indisponível</span>';
+    if (value === "Opcional") return '<span class="badge-optional">Opcional</span>';
+    if (value === "-") return '<span class="dash-cell">-</span>';
+    return '<span>' + value + '</span>';
+  }
+
+  var tbody = document.getElementById("compareBody");
+  COMPARE.forEach(function(row){
+    var tr = document.createElement("tr");
+    var tdFeat = document.createElement("td");
+    tdFeat.textContent = row[0];
+    var tdOnline = document.createElement("td");
+    tdOnline.innerHTML = cellHTML(row[1]);
+    var tdAssist = document.createElement("td");
+    tdAssist.innerHTML = cellHTML(row[2]);
+    tr.appendChild(tdFeat);
+    tr.appendChild(tdOnline);
+    tr.appendChild(tdAssist);
+    tbody.appendChild(tr);
+  });
+})();
+</script>
+
+</body>
+</html>
