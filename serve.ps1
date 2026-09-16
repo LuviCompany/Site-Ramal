@@ -25,6 +25,12 @@ while ($listener.IsListening) {
     if ($path -eq "/") { $path = "/index.html" }
     $filePath = Join-Path $root ($path.TrimStart("/") -replace "/", "\")
 
+    # Mimic Vercel's cleanUrls: /funcionalidades -> funcionalidades.html
+    if (-not (Test-Path $filePath -PathType Leaf) -and -not ([System.IO.Path]::GetExtension($filePath))) {
+        $htmlCandidate = "$filePath.html"
+        if (Test-Path $htmlCandidate -PathType Leaf) { $filePath = $htmlCandidate }
+    }
+
     if (Test-Path $filePath -PathType Leaf) {
         $ext = [System.IO.Path]::GetExtension($filePath)
         $contentType = $mimeTypes[$ext]
