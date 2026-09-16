@@ -270,6 +270,20 @@
   .dash-cell{ color:#C6CFDD; font-weight:800; }
   .compare-note{ margin:18px 0 0; font-size:12.5px; color:var(--muted-2); text-align:center; }
 
+  /* Comparativo em cards (mobile) */
+  .compare-cards{ display:none; }
+  .compare-card{ border:1px solid var(--border); border-radius:14px; padding:16px 18px; background:#fff; }
+  .compare-card + .compare-card{ margin-top:12px; }
+  .compare-card-feat{ margin:0 0 12px; font-size:14px; font-weight:800; color:var(--ink); line-height:1.35; }
+  .compare-card-row{ display:flex; align-items:center; justify-content:space-between; gap:10px; padding:9px 0; }
+  .compare-card-row + .compare-card-row{ border-top:1px dashed var(--border); }
+  .compare-card-label{ font-size:11px; font-weight:700; color:var(--muted-2); text-transform:uppercase; letter-spacing:0.03em; flex:0 1 auto; min-width:0; }
+  .compare-card-value{
+    display:flex; align-items:center; justify-content:flex-end; gap:6px;
+    font-size:13px; font-weight:600; color:#2A3A52; text-align:right;
+    flex:1 1 auto; min-width:0; white-space:normal;
+  }
+
   /* ---------- Aplicativos (blue) ---------- */
   .apps-section{ margin-top:84px; background:var(--blue); padding:78px 24px; }
   .apps-inner{ max-width:1200px; margin:0 auto; }
@@ -411,7 +425,8 @@
     .hero-art{ max-width:340px; margin:28px auto 0; }
     .hero-cloud{ width:64px; height:64px; }
     .cards-3{ grid-template-columns:minmax(0,1fr); }
-    .compare-table td:first-child, .compare-table th:first-child{ min-width:200px; }
+    .compare-wrap{ display:none; }
+    .compare-cards{ display:block; margin-top:32px; }
     .apps-grid{ grid-template-columns:minmax(0,1fr); }
     .split-section{ padding-bottom:56px; }
     .icon-grid-2{ grid-template-columns:minmax(0,1fr); }
@@ -513,6 +528,7 @@
         </table>
       </div>
     </div>
+    <div class="compare-cards" id="compareCards"></div>
     <p class="compare-note">As células marcadas com "-" indicam um item não aplicável a essa modalidade de contratação.</p>
   </section>
 
@@ -892,6 +908,30 @@
     tr.appendChild(tdOnline);
     tr.appendChild(tdAssist);
     tbody.appendChild(tr);
+  });
+
+  /* Versao em cards da mesma tabela, usada no mobile (evita rolagem horizontal) */
+  var cardsWrap = document.getElementById("compareCards");
+  COMPARE.forEach(function(row){
+    var card = document.createElement("div");
+    card.className = "compare-card";
+
+    var feat = document.createElement("p");
+    feat.className = "compare-card-feat";
+    feat.textContent = row[0];
+    card.appendChild(feat);
+
+    var rowOnline = document.createElement("div");
+    rowOnline.className = "compare-card-row";
+    rowOnline.innerHTML = '<span class="compare-card-label">Contratação Online</span><span class="compare-card-value">' + cellHTML(row[1]) + '</span>';
+    card.appendChild(rowOnline);
+
+    var rowAssist = document.createElement("div");
+    rowAssist.className = "compare-card-row";
+    rowAssist.innerHTML = '<span class="compare-card-label">Contratação Assistida</span><span class="compare-card-value">' + cellHTML(row[2]) + '</span>';
+    card.appendChild(rowAssist);
+
+    cardsWrap.appendChild(card);
   });
 
   /* Mantem o cabecalho da tabela sincronizado com o scroll horizontal do corpo */
