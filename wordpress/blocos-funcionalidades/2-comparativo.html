@@ -1,0 +1,144 @@
+<!-- FUNCIONALIDADES 2/5: container 'rv-reset' + widget HTML. Os dados da tabela ficam no array COMPARE, no fim deste bloco. -->
+<div class="rv pg-func">
+  <section id="comparativo" class="section-pad">
+    <p class="section-eyebrow">Comparativo</p>
+    <h2>Conheça todas as funcionalidades</h2>
+    <p class="section-lead">Compare o que está disponível na contratação online e na contratação assistida.</p>
+
+    <div class="compare-wrap">
+      <div class="compare-head-scroll" id="compareHeadScroll">
+        <table class="compare-table">
+          <colgroup><col class="col-feat"><col class="col-a"><col class="col-b"></colgroup>
+          <thead>
+            <tr>
+              <th>Funcionalidade</th>
+              <th>Contratação Online</th>
+              <th>Contratação Assistida</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="compare-body-scroll" id="compareBodyScroll">
+        <table class="compare-table">
+          <colgroup><col class="col-feat"><col class="col-a"><col class="col-b"></colgroup>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="compare-cards" id="compareCards"></div>
+    <p class="compare-note">As células marcadas com "-" indicam um item não aplicável a essa modalidade de contratação.</p>
+  </section>
+<script>
+(function(){
+  "use strict";
+  /* Tabela comparativa (data-driven) */
+  var COMPARE = [
+    ["Número telefônico virtual","Disponível","Disponível"],
+    ["Portabilidade numérica","Disponível","Disponível"],
+    ["Ramais em nuvem","Disponível","Disponível"],
+    ["Chamadas simultâneas","Conforme plano","Conforme projeto"],
+    ["Ligações nacionais","Disponível","Disponível"],
+    ["Ligações internacionais","Indisponível","Conforme contratado"],
+    ["Aplicativo para iOS, Android e Desktop","Disponível","Disponível"],
+    ["Atendimento em celular, computador ou telefone IP","Disponível","Disponível"],
+    ["Transferência de chamadas","Disponível","Disponível"],
+    ["Captura de chamadas","Disponível","Disponível"],
+    ["Música de espera personalizada","Opcional","Disponível"],
+    ["Identificação de chamadas","Disponível","Disponível"],
+    ["Gravação de chamadas","Opcional","Disponível"],
+    ["Relatórios de chamadas","Opcional","Disponível"],
+    ["Painel administrativo","Opcional","Disponível"],
+    ["URA (Atendimento eletrônico)","Opcional","Disponível"],
+    ["Filas de atendimento","Opcional","Disponível"],
+    ["Horários de atendimento personalizados","Opcional","Disponível"],
+    ["Caixa postal / Voicemail","Disponível","Disponível"],
+    ["Módulo Call Center","Opcional","Opcional"],
+    ["Dashboards de atendimento","Opcional","Disponível"],
+    ["Monitoramento de agentes","Opcional","Disponível"],
+    ["Indicadores de desempenho dos atendentes","Indisponível","Disponível / Conforme projeto"],
+    ["Agente de Voz com IA","Indisponível","Disponível / Opcional"],
+    ["Análise de chamadas telefônicas com IA","Indisponível","Disponível / Opcional"],
+    ["Transcrição automática de chamadas","Indisponível","Disponível / Opcional"],
+    ["Resumo automático das ligações por IA","Indisponível","Opcional"],
+    ["Identificação de assuntos e motivos de contato por IA","Indisponível","Opcional"],
+    ["Análise de sentimento das chamadas","Indisponível","Disponível / Opcional"],
+    ["Avaliação automática da qualidade do atendimento","Opcional","Disponível / Opcional"],
+    ["Integração com CRM","Indisponível","Disponível / Opcional"],
+    ["Integração com ERP","Indisponível","Disponível / Opcional"],
+    ["Integrações via API","Indisponível","Disponível / Opcional"],
+    ["Webhooks","Indisponível","Disponível / Opcional"],
+    ["Integração com WhatsApp","Indisponível","Disponível / Opcional"],
+    ["Integrações personalizadas","Indisponível","Disponível / Opcional"],
+    ["Múltiplas unidades / filiais","Opcional","Disponível"],
+    ["Projeto personalizado de telefonia","-","Disponível / Conforme projeto"],
+    ["Configuração realizada pela equipe","Indisponível","Disponível"],
+    ["Implantação acompanhada","Indisponível","Disponível"],
+    ["Treinamento da equipe","Indisponível","Disponível"],
+    ["Suporte eletrônico","Disponível","Disponível"],
+    ["Atendimento humano","Indisponível","Disponível"],
+    ["Prazo de suporte","Até 24h","Prioritário / Até 4h"],
+    ["Suporte em horário comercial","-","Disponível"],
+    ["Plantão técnico","-","Disponível / Conforme contrato"],
+    ["Consultoria especializada","-","Disponível"]
+  ];
+
+  var CHECK_SVG = '<span class="avail-icon" aria-hidden="true"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L20 7"></path></svg></span><span class="visually-hidden">Disponível</span>';
+
+  function cellHTML(value){
+    if (value === "Disponível") return CHECK_SVG;
+    if (value === "Indisponível") return '<span class="text-unavailable">Indisponível</span>';
+    if (value === "Opcional") return '<span class="badge-optional">Opcional</span>';
+    if (value === "-") return '<span class="dash-cell">-</span>';
+    return '<span>' + value + '</span>';
+  }
+
+  var tbody = document.getElementById("compareBody");
+  COMPARE.forEach(function(row){
+    var tr = document.createElement("tr");
+    var tdFeat = document.createElement("td");
+    tdFeat.textContent = row[0];
+    var tdOnline = document.createElement("td");
+    tdOnline.innerHTML = cellHTML(row[1]);
+    var tdAssist = document.createElement("td");
+    tdAssist.innerHTML = cellHTML(row[2]);
+    tr.appendChild(tdFeat);
+    tr.appendChild(tdOnline);
+    tr.appendChild(tdAssist);
+    tbody.appendChild(tr);
+  });
+
+  /* Versao em cards da mesma tabela, usada no mobile (evita rolagem horizontal) */
+  var cardsWrap = document.getElementById("compareCards");
+  COMPARE.forEach(function(row){
+    var card = document.createElement("div");
+    card.className = "compare-card";
+
+    var feat = document.createElement("p");
+    feat.className = "compare-card-feat";
+    feat.textContent = row[0];
+    card.appendChild(feat);
+
+    var rowOnline = document.createElement("div");
+    rowOnline.className = "compare-card-row";
+    rowOnline.innerHTML = '<span class="compare-card-label">Contratação Online</span><span class="compare-card-value">' + cellHTML(row[1]) + '</span>';
+    card.appendChild(rowOnline);
+
+    var rowAssist = document.createElement("div");
+    rowAssist.className = "compare-card-row";
+    rowAssist.innerHTML = '<span class="compare-card-label">Contratação Assistida</span><span class="compare-card-value">' + cellHTML(row[2]) + '</span>';
+    card.appendChild(rowAssist);
+
+    cardsWrap.appendChild(card);
+  });
+
+  /* Mantem o cabecalho da tabela sincronizado com o scroll horizontal do corpo */
+  var compareHeadScroll = document.getElementById("compareHeadScroll");
+  var compareBodyScroll = document.getElementById("compareBodyScroll");
+  if (compareHeadScroll && compareBodyScroll) {
+    compareBodyScroll.addEventListener("scroll", function(){
+      compareHeadScroll.scrollLeft = compareBodyScroll.scrollLeft;
+    }, { passive: true });
+  }
+})();
+</script>
+</div>
