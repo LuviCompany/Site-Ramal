@@ -115,10 +115,12 @@ Container externo com:
 - **ID CSS: `contato`**
 - **Classes CSS: `rv contato`**
 
-Dentro dele, um **segundo container** com Classes CSS `contato-inner`, e dentro desse segundo container:
+Dentro dele, um **segundo container** com Classes CSS `contato-inner` (Largura total, ou "Boxed": o CSS funciona nos dois casos), e dentro desse segundo container:
 
 1. Widget **HTML** com `8-contato-texto.html` (textos da coluna esquerda).
-2. Widget **Shortcode** com `[fluentform id="X"]` (o ID do formulário, veja a seção 6).
+2. Widget **Shortcode** com `[fluentform id="X"]` (o ID do formulário, veja a seção 6). **Crie o formulário antes**: enquanto o shortcode estiver vazio ou com ID inexistente, o Elementor mostra só uma barra cinza no lugar.
+
+Resultado: texto à esquerda e formulário à direita no desktop; empilhados (texto em cima, formulário embaixo) no tablet e no celular.
 
 ## 5. Montar a página Funcionalidades
 
@@ -183,6 +185,8 @@ Crie um formulário em branco com estes campos (a ordem e o layout são os do si
 |---|---|
 | Seção com espaço em volta ou não ocupa a largura toda | Faltou `rv-reset` no container, ou ele não está em "Largura total" |
 | Fundo azul do Contato sem cor / FAQ sem estilo | Faltou a classe `rv` junto de `contato` / `faq-section` |
+| Textos do Contato invisíveis ou sobre um retângulo branco | Está com o CSS antigo. Cole de novo o `1-css-global.css` e recarregue o editor. |
+| Formulário aparece embaixo do texto no desktop | Mesma causa acima (CSS antigo). Confirme também que o container interno tem a classe `contato-inner`. |
 | Formulário sem estilo | O container externo do Contato precisa ter as classes `rv contato`. O CSS do formulário depende delas. |
 | Header não fica fixo | Um ancestral do tema com `overflow` impede o `position:sticky`. Procurar por isso no CSS do tema. |
 | Tudo com fonte diferente | O CSS global não carregou nessa página, ou um plugin de cache está servindo a versão antiga |

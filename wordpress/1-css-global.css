@@ -646,7 +646,7 @@
    ========================================================= */
 
 /* Base: neutraliza o que o tema/Elementor herdaria no lugar do <body> original */
-.rv{ box-sizing:border-box; font-size:16px; line-height:normal; overflow-x:clip; }
+.rv{ box-sizing:border-box; font-size:16px; line-height:normal; overflow-x:clip; background:transparent; }
 .rv p{ margin:0; }
 .rv h1,.rv h2,.rv h3,.rv h4,.rv p,.rv a,.rv span,.rv button,.rv input,.rv select,.rv textarea,.rv table,.rv th,.rv td{ font-family:inherit; }
 .rv h1,.rv h2,.rv h3{ color:inherit; text-transform:none; }
@@ -679,6 +679,12 @@ body.admin-bar #masthead{ top:32px; }
 /* Containers nativos (nao usam .rv-reset): fundo azul do contato e area do FAQ */
 .rv.contato{ padding:78px 24px !important; gap:0 !important; width:100% !important; max-width:100% !important; }
 .rv .contato-inner{ width:100% !important; max-width:1200px !important; margin-left:auto !important; margin-right:auto !important; padding:0 !important; }
+/* Container interno "boxed": o Elementor coloca uma camada .e-con-inner entre o container e os widgets. A grade de 2 colunas precisa ficar nela. */
+.rv .contato-inner > .e-con-inner{ grid-column:1 / -1; display:grid !important; grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr); gap:56px; align-items:start; width:100% !important; max-width:100% !important; padding:0 !important; }
+.rv.contato > .e-con-inner,.rv.faq-section > .e-con-inner{ width:100% !important; max-width:100% !important; padding:0 !important; gap:0 !important; }
+@media (max-width:1024px){
+  .rv .contato-inner > .e-con-inner{ grid-template-columns:minmax(0,1fr); gap:40px; }
+}
 .rv.contato .elementor-widget{ margin:0 !important; }
 .rv.faq-section{ padding:84px 24px 0 !important; gap:0 !important; width:100% !important; max-width:1040px !important; margin-left:auto !important; margin-right:auto !important; }
 .rv.faq-section .elementor-widget{ margin:0 !important; }
