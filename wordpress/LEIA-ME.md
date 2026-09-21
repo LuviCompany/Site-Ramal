@@ -140,13 +140,14 @@ Crie um formulário em branco com estes campos (a ordem e o layout são os do si
 |---|---|---|---|
 | 1 | Nome completo | Texto (placeholder "Seu nome") | Sim |
 | 1 | Empresa | Texto (placeholder "Nome da empresa") | Sim |
-| 2 | WhatsApp / Telefone | Telefone (placeholder "(00) 00000-0000") | Sim |
+| 2 | WhatsApp / Telefone | Texto simples (placeholder "(00) 00000-0000"); o campo "Telefone" é da versão Pro | Sim |
 | 2 | E-mail | E-mail (placeholder "voce@empresa.com.br") | Sim |
 | 3 | Número de ramais desejado | Lista suspensa | Sim |
 | 4 | Mensagem (opcional) | Texto longo, 3 linhas | Não |
 | 5 | Autorização LGPD | Caixa de seleção | Sim |
 | 6 | Botão | Texto "Solicitar orçamento" | (botão) |
 
+- **Campos lado a lado (importante para o tamanho do formulário):** nos **4 primeiros campos** (Nome, Empresa, WhatsApp, E-mail), clique no campo → **Personalização de entrada** → em *Opções avançadas* procure **Classe do contêiner** (Container Class) e escreva `rv-meia`. Isso deixa Nome e Empresa lado a lado, e WhatsApp e E-mail também, como no site. Nos outros campos, não coloque nada. No celular eles empilham sozinhos. Sem essa classe, todos os campos ficam empilhados e o formulário fica bem mais alto que o do site.
 - **Lista de ramais:** "1 a 5 ramais", "6 a 15 ramais", "16 a 30 ramais", "31 a 100 ramais", "Mais de 100 ramais".
 - **Texto do LGPD:** "Autorizo o contato da RamalVirtual Telecom e o tratamento dos meus dados conforme a LGPD.*"
 - **Notificação por e-mail:** para `contato@ramalvirtual.com.br` (ajustem se o comercial usar outro e-mail).

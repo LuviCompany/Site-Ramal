@@ -731,25 +731,43 @@ body.admin-bar #masthead{ top:32px; }
   .rv .faq-acc .elementor-accordion{ grid-template-columns:minmax(0,1fr); }
 }
 
-/* ---------- Formulario de contato: Fluent Forms dentro do card branco ---------- */
-.rv.contato .fluentform{ background:#fff; border-radius:16px; padding:30px; }
-.rv.contato .fluentform .ff-el-group{ margin-bottom:16px; }
-.rv.contato .fluentform .ff-el-input--label label{ font-size:12.5px; font-weight:700; color:#2A3A52; margin-bottom:6px; }
+/* ---------- Formulario de contato: Fluent Forms dentro do card branco ----------
+   Estrutura do plugin: div.fluentform > form.frm-fluent-form > fieldset > .ff-el-group (um por campo)
+   Campos que devem ficar lado a lado (Nome/Empresa, WhatsApp/E-mail): colocar a classe "rv-meia"
+   em Personalizacao de entrada > Classe do conteiner. */
+.rv.contato .elementor-shortcode{ margin:0; padding:0; }
+.rv.contato .fluentform{ background:#fff; border-radius:16px; padding:30px !important; margin:0 !important; }
+.rv.contato .fluentform .frm-fluent-form{ margin:0 !important; padding:0 !important; }
+.rv.contato .fluentform fieldset{
+  display:grid !important; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; align-items:start;
+  margin:0 !important; padding:0 !important;
+}
+.rv.contato .fluentform fieldset > *{ grid-column:1 / -1; margin:0 !important; }
+.rv.contato .fluentform fieldset > .rv-meia{ grid-column:auto; }
+.rv.contato .fluentform .ff-el-group{ margin:0 !important; }
+.rv.contato .fluentform .ff-el-input--label{ display:block; margin:0 0 6px !important; }
+.rv.contato .fluentform .ff-el-input--label label{ font-size:12.5px; font-weight:700; line-height:1.4; color:#2A3A52; margin:0 !important; }
 .rv.contato .fluentform .ff-el-form-control{
-  border:1.5px solid #DDE4EF; border-radius:9px; padding:12px 14px; font-size:16px; color:var(--ink);
-  background:#fff; height:auto; min-height:0; box-shadow:none; width:100%;
+  border:1.5px solid #DDE4EF; border-radius:9px; padding:12px 14px; font-size:16px; line-height:1.25; color:var(--ink);
+  background:#fff; height:auto; min-height:0; margin:0; box-shadow:none; width:100%;
 }
 .rv.contato .fluentform .ff-el-form-control:focus{ border-color:var(--blue); box-shadow:none; outline:none; }
-.rv.contato .fluentform textarea.ff-el-form-control{ resize:vertical; }
-.rv.contato .fluentform .ff-el-form-check-label,.rv.contato .fluentform .ff_t_c{ font-size:12.5px; line-height:1.5; color:var(--muted); }
+.rv.contato .fluentform textarea.ff-el-form-control{ resize:vertical; min-height:0; }
+.rv.contato .fluentform .ff-el-form-check{ margin:0; }
+.rv.contato .fluentform .ff-el-form-check label,.rv.contato .fluentform .ff-el-form-check-label,.rv.contato .fluentform .ff_t_c{ font-size:12.5px; line-height:1.5; color:var(--muted); font-weight:400; margin:0 !important; }
 .rv.contato .fluentform .ff-el-form-check-input{ accent-color:var(--blue); }
+.rv.contato .fluentform .ff_submit_btn_wrapper{ text-align:left; }
 .rv.contato .fluentform .ff-btn-submit{
-  width:100%; background:var(--blue-dark); color:#fff; border:0; border-radius:9px; padding:16px; font-size:14px;
-  font-weight:800; letter-spacing:0.06em; text-transform:uppercase; transition:background .15s ease; opacity:1;
+  display:block; width:100%; margin:0 !important; background:var(--blue-dark); color:#fff; border:0; border-radius:9px; padding:16px; font-size:14px;
+  line-height:1.25; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; transition:background .15s ease; opacity:1;
 }
-.rv.contato .fluentform .ff-btn-submit:hover{ background:var(--blue); color:#fff; }
+.rv.contato .fluentform .ff-btn-submit:hover{ background:var(--blue); color:#fff; opacity:1; }
 .rv.contato .fluentform .text-danger,.rv.contato .fluentform .error{ color:var(--red); font-size:12px; font-weight:600; }
 .rv.contato .ff-message-success{
   margin:0; padding:12px 14px; background:#EAF7F1; border:0; border-radius:9px;
   font-size:13.5px; font-weight:700; color:#1B7A55; box-shadow:none;
+}
+@media (max-width:640px){
+  .rv.contato .fluentform fieldset{ grid-template-columns:minmax(0,1fr); }
+  .rv.contato .fluentform fieldset > .rv-meia{ grid-column:1 / -1; }
 }
