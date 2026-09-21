@@ -686,8 +686,32 @@ body.admin-bar #masthead{ top:32px; }
   .rv.faq-section{ padding-left:20px !important; padding-right:20px !important; }
 }
 
-/* ---------- FAQ: widget Acordeao do Elementor (classe "faq-acc" no widget) ---------- */
+/* ---------- FAQ: widget Acordeao/Sanfona do Elementor (classe "faq-acc" no widget) ---------- */
 .rv .faq-acc{ margin-top:44px !important; }
+
+/* Versao "aninhada" (e-n-accordion, a padrao nos Elementor recentes) */
+.rv .faq-acc{
+  --n-accordion-title-font-size:14.5px;
+  --n-accordion-title-normal-color:var(--ink); --n-accordion-title-hover-color:var(--ink); --n-accordion-title-active-color:var(--ink);
+  --n-accordion-icon-normal-color:var(--blue); --n-accordion-icon-hover-color:var(--blue); --n-accordion-icon-active-color:var(--blue);
+  --n-accordion-icon-size:13px; --n-accordion-padding:18px 20px; --n-accordion-border-width:0px;
+  --n-accordion-item-title-space-between:0px; --n-accordion-item-title-distance-from-content:0px;
+  --n-accordion-title-icon-order:2; --n-accordion-title-justify-content:space-between;
+}
+.rv .faq-acc .e-n-accordion{ display:grid !important; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px !important; align-items:start; }
+.rv .faq-acc .e-n-accordion-item{ border:1px solid var(--border) !important; border-radius:12px !important; background:#fff; overflow:hidden; margin:0 !important; }
+.rv .faq-acc .e-n-accordion-item-title{ border:0 !important; border-radius:0 !important; padding:18px 20px !important; gap:16px !important; justify-content:space-between !important; background:none; transition:background .15s ease; }
+.rv .faq-acc .e-n-accordion-item-title:hover{ background:var(--bg-soft); }
+.rv .faq-acc .e-n-accordion-item-title-header{ flex:1 1 auto; min-width:0; }
+.rv .faq-acc .e-n-accordion-item-title-text{ font-size:14.5px !important; font-weight:700 !important; line-height:1.4 !important; color:var(--ink) !important; text-align:left; text-transform:none; margin:0; }
+.rv .faq-acc .e-n-accordion-item-title-icon{ order:2 !important; flex:0 0 auto; }
+.rv .faq-acc .e-n-accordion-item > .e-con{ border:0 !important; padding:0 20px 20px !important; margin:0 !important; gap:0 !important; min-height:0; }
+.rv .faq-acc .e-n-accordion-item > .e-con .elementor-widget{ margin:0 !important; }
+.rv .faq-acc .e-n-accordion-item > .e-con .elementor-widget-container,
+.rv .faq-acc .e-n-accordion-item > .e-con p,
+.rv .faq-acc .e-n-accordion-item > .e-con .elementor-widget-text-editor{ font-size:14px; line-height:1.6; color:var(--muted); margin:0; }
+
+/* Versao classica (.elementor-accordion), caso usem o widget antigo */
 .rv .faq-acc .elementor-accordion{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:14px; align-items:start; }
 .rv .faq-acc .elementor-accordion-item{ border:1px solid var(--border) !important; border-radius:12px; background:#fff; overflow:hidden; margin:0 !important; }
 .rv .faq-acc .elementor-tab-title{ display:flex; align-items:center; gap:16px; padding:18px 20px !important; margin:0; border:0 !important; background:none; transition:background .15s ease; }

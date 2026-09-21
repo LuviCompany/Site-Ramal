@@ -90,10 +90,12 @@ Container com:
 Dentro dele, nesta ordem:
 
 1. Widget **HTML** com `7-faq-titulo.html` (título da seção).
-2. Widget **Acordeão**:
+2. Widget **Sanfona** (o Acordeão do Elementor, cujos itens aparecem como "Item Nº 1", "Item Nº 2"...):
    - Avançado → Classes CSS: `faq-acc`
-   - Ícone alinhado à **direita**
-   - **Múltiplos abertos: desligado** (abre um por vez, como no site atual)
+   - Conteúdo → **Itens**: 6 itens. Em cada um, o **Título** é a pergunta.
+   - A **resposta** de cada item vai *dentro* do item: no painel Estrutura, abra o item, clique no container dele e adicione um widget **Editor de texto** com a resposta. Dica: monte o Item 1 completo e use **Duplicar** no item, depois só troque os textos.
+   - Conteúdo → Interações: **um item aberto por vez** e estado padrão **todos recolhidos**.
+   - Conteúdo → Ícone: use uma seta (fechado: seta para baixo; aberto: seta para cima). Posição e cores o CSS resolve, **não mexam na aba Estilo**.
    - Cadastre estas 6 perguntas:
 
 | Pergunta | Resposta |
@@ -167,7 +169,7 @@ Crie um formulário em branco com estes campos (a ordem e o layout são os do si
 |---|---|
 | Textos e imagens das seções | Widget HTML do bloco (editar o código, os textos ficam em texto puro) |
 | Itens da tabela comparativa | No final de `2-comparativo.html`, na lista `COMPARE` |
-| Perguntas do FAQ | Widget Acordeão |
+| Perguntas do FAQ | Widget Sanfona (título = pergunta, Editor de texto dentro do item = resposta) |
 | Campos e destino do formulário | Fluent Forms |
 | Menu, footer, botão do WhatsApp | Templates do Ultimate Addons |
 | Cores da marca | Início do CSS global (`--blue`, `--cyan`, `--ink`...) |
@@ -194,4 +196,6 @@ Antes de entregar, os blocos e o CSS foram testados localmente numa página que 
 - Não houve rolagem horizontal na Home em 320, 375, 768, 1024 e 1440 px, nem em Funcionalidades em 320, 414, 834 e 1440 px.
 - A tabela de 47 linhas, os cards do mobile, a animação da IA e o menu mobile funcionaram.
 
-**O que ainda não foi testado num WordPress de verdade:** o Acordeão do Elementor e o Fluent Forms. O CSS deles foi escrito a partir da estrutura padrão de cada plugin. Na primeira montagem, pode ser preciso um ajuste fino de espaçamento nesses dois pontos.
+- O CSS da Sanfona foi testado com o CSS original do Elementor carregado na página (2 colunas, bordas, ícone à direita, abrir e fechar).
+
+**O que ainda não foi testado num WordPress de verdade:** o Fluent Forms. O CSS dele foi escrito a partir da estrutura padrão do plugin. Na primeira montagem, pode ser preciso um ajuste fino de espaçamento nesse ponto.
