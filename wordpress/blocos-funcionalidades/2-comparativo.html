@@ -139,6 +139,19 @@
       compareHeadScroll.scrollLeft = compareBodyScroll.scrollLeft;
     }, { passive: true });
   }
+
+  /* Alinha o cabecalho com o corpo quando o corpo tem barra de rolagem vertical */
+  (function(){
+    var head = document.getElementById("compareHeadScroll");
+    var body = document.getElementById("compareBodyScroll");
+    if (!head || !body) return;
+    function sync(){
+      var sb = body.offsetWidth - body.clientWidth;
+      head.style.paddingRight = sb > 0 ? sb + "px" : "";
+    }
+    sync();
+    window.addEventListener("resize", sync);
+  })();
 })();
 </script>
 </div>

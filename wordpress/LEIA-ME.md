@@ -188,6 +188,7 @@ Crie um formulário em branco com estes campos (a ordem e o layout são os do si
 | Fundo azul do Contato sem cor / FAQ sem estilo | Faltou a classe `rv` junto de `contato` / `faq-section` |
 | Textos do Contato invisíveis ou sobre um retângulo branco | Está com o CSS antigo. Cole de novo o `1-css-global.css` e recarregue o editor. |
 | Formulário aparece embaixo do texto no desktop | Mesma causa acima (CSS antigo). Confirme também que o container interno tem a classe `contato-inner`. |
+| Tabela comparativa com bordas em todas as células, vão branco entre cabeçalho e corpo, ou colunas desalinhadas | Está com o CSS antigo (o tema Hello Elementor estiliza toda tabela por conta própria). Cole de novo o `1-css-global.css` e o bloco `2-comparativo.html` (que agora alinha o cabeçalho ao corpo), e limpe o cache. |
 | Formulário sem estilo | O container externo do Contato precisa ter as classes `rv contato`. O CSS do formulário depende delas. |
 | Header não fica fixo | Um ancestral do tema com `overflow` impede o `position:sticky`. Procurar por isso no CSS do tema. |
 | Tudo com fonte diferente | O CSS global não carregou nessa página, ou um plugin de cache está servindo a versão antiga |

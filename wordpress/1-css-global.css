@@ -655,6 +655,14 @@
 .rv a{ text-decoration:none; }
 .rv ul,.rv ol{ margin:0; padding:0; list-style:none; }
 
+/* Tema (ex.: Hello Elementor) estiliza toda <table> e todo titulo. Neutraliza para a tabela comparativa
+   nao ganhar bordas, margem de 15px embaixo, fundo alternado e line-height 1.5 que nao sao do design. */
+.rv h1,.rv h2,.rv h3,.rv h4{ margin-block:0; }
+.rv table{ margin:0; font-size:inherit; border-spacing:0; }
+.rv .compare-table th,.rv .compare-table td{ border:0; line-height:inherit; vertical-align:middle; }
+.rv .compare-table thead th{ border-block-start:0 !important; }
+.rv .compare-head-scroll{ background:var(--blue-dark); }
+
 /* Pagina "Funcionalidades": blocos dessa pagina ficam dentro de <div class="rv pg-func"> */
 .rv.pg-func h2{ max-width:24em; }
 .rv.pg-func .hero-art-frame{ aspect-ratio:1672/941; }
